@@ -1,0 +1,1407 @@
+2026-02-12T08:34:36.6842698Z ##[section]Starting: Run docker build
+2026-02-12T08:34:36.6851336Z ==============================================================================
+2026-02-12T08:34:36.6851754Z Task         : Command line
+2026-02-12T08:34:36.6852044Z Description  : Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
+2026-02-12T08:34:36.6852404Z Version      : 2.268.0
+2026-02-12T08:34:36.6852651Z Author       : Microsoft Corporation
+2026-02-12T08:34:36.6852853Z Help         : https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/command-line
+2026-02-12T08:34:36.6853093Z ==============================================================================
+2026-02-12T08:34:37.0530789Z Generating script.
+2026-02-12T08:34:37.0538605Z ========================== Starting Command Output ===========================
+2026-02-12T08:34:37.0553301Z [command]/usr/bin/bash --noprofile --norc /home/vsts/work/_temp/0aa0173d-ee31-47f5-b594-aee20fdbd39d.sh
+2026-02-12T08:34:37.0727571Z ##[group]Configure Docker
+2026-02-12T08:34:37.0735739Z +++ dirname .scripts/run_docker_build.sh
+2026-02-12T08:34:37.0749566Z ++ cd .scripts
+2026-02-12T08:34:37.0751094Z ++ pwd
+2026-02-12T08:34:37.0755389Z + THISDIR=/home/vsts/work/1/s/.scripts
+2026-02-12T08:34:37.0761823Z ++ basename /home/vsts/work/1/s/.scripts
+2026-02-12T08:34:37.0771908Z + PROVIDER_DIR=.scripts
+2026-02-12T08:34:37.0778468Z +++ dirname .scripts/run_docker_build.sh
+2026-02-12T08:34:37.0791641Z ++ cd .scripts/..
+2026-02-12T08:34:37.0795122Z ++ pwd
+2026-02-12T08:34:37.0797686Z + FEEDSTOCK_ROOT=/home/vsts/work/1/s
+2026-02-12T08:34:37.0802879Z + RECIPE_ROOT=/home/vsts/work/1/s/recipe
+2026-02-12T08:34:37.0803888Z + '[' -z pdftopng-feedstock ']'
+2026-02-12T08:34:37.0804762Z + [[ a7fa66c7df2884acd8ac8b728ce409f2ee2dc8e1 == '' ]]
+2026-02-12T08:34:37.0805535Z + docker info
+2026-02-12T08:34:37.4970815Z Client: Docker Engine - Community
+2026-02-12T08:34:37.4972037Z  Version:    28.0.4
+2026-02-12T08:34:37.4973576Z  Context:    default
+2026-02-12T08:34:37.4974357Z  Debug Mode: false
+2026-02-12T08:34:37.4974922Z  Plugins:
+2026-02-12T08:34:37.4975497Z   buildx: Docker Buildx (Docker Inc.)
+2026-02-12T08:34:37.4976085Z     Version:  v0.31.1
+2026-02-12T08:34:37.4992060Z     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+2026-02-12T08:34:37.4992973Z   compose: Docker Compose (Docker Inc.)
+2026-02-12T08:34:37.4993737Z     Version:  v2.38.2
+2026-02-12T08:34:37.4994389Z     Path:     /usr/libexec/docker/cli-plugins/docker-compose
+2026-02-12T08:34:37.4994784Z
+2026-02-12T08:34:37.4995438Z Server:
+2026-02-12T08:34:37.4996033Z  Containers: 0
+2026-02-12T08:34:37.4996791Z   Running: 0
+2026-02-12T08:34:37.4998283Z   Paused: 0
+2026-02-12T08:34:37.4998919Z   Stopped: 0
+2026-02-12T08:34:37.4999475Z  Images: 1
+2026-02-12T08:34:37.5000037Z  Server Version: 28.0.4
+2026-02-12T08:34:37.5000622Z  Storage Driver: overlay2
+2026-02-12T08:34:37.5001259Z   Backing Filesystem: extfs
+2026-02-12T08:34:37.5001721Z   Supports d_type: true
+2026-02-12T08:34:37.5002328Z   Using metacopy: false
+2026-02-12T08:34:37.5002833Z   Native Overlay Diff: false
+2026-02-12T08:34:37.5003373Z   userxattr: false
+2026-02-12T08:34:37.5003924Z  Logging Driver: json-file
+2026-02-12T08:34:37.5004397Z  Cgroup Driver: systemd
+2026-02-12T08:34:37.5004899Z  Cgroup Version: 2
+2026-02-12T08:34:37.5005331Z  Plugins:
+2026-02-12T08:34:37.5005792Z   Volume: local
+2026-02-12T08:34:37.5006729Z   Network: bridge host ipvlan macvlan null overlay
+2026-02-12T08:34:37.5007448Z   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+2026-02-12T08:34:37.5008066Z  Swarm: inactive
+2026-02-12T08:34:37.5008570Z  Runtimes: io.containerd.runc.v2 runc
+2026-02-12T08:34:37.5009083Z  Default Runtime: runc
+2026-02-12T08:34:37.5009575Z  Init Binary: docker-init
+2026-02-12T08:34:37.5010512Z  containerd version: dea7da592f5d1d2b7755e3a161be07f43fad8f75
+2026-02-12T08:34:37.5011228Z  runc version: v1.3.4-0-gd6d73eb8
+2026-02-12T08:34:37.5011819Z  init version: de40ad0
+2026-02-12T08:34:37.5012373Z  Security Options:
+2026-02-12T08:34:37.5012925Z   apparmor
+2026-02-12T08:34:37.5013674Z   seccomp
+2026-02-12T08:34:37.5014132Z    Profile: builtin
+2026-02-12T08:34:37.5014599Z   cgroupns
+2026-02-12T08:34:37.5015074Z  Kernel Version: 6.11.0-1018-azure
+2026-02-12T08:34:37.5015765Z  Operating System: Ubuntu 24.04.3 LTS
+2026-02-12T08:34:37.5016390Z  OSType: linux
+2026-02-12T08:34:37.5018862Z  Architecture: x86_64
+2026-02-12T08:34:37.5019649Z  CPUs: 2
+2026-02-12T08:34:37.5020355Z  Total Memory: 7.757GiB
+2026-02-12T08:34:37.5020993Z  Name: runnervmuy2i9
+2026-02-12T08:34:37.5024210Z  ID: 073c65d4-c458-42c9-935a-939d0489da0a
+2026-02-12T08:34:37.5025100Z  Docker Root Dir: /var/lib/docker
+2026-02-12T08:34:37.5025788Z  Debug Mode: false
+2026-02-12T08:34:37.5026450Z  Username: githubactions
+2026-02-12T08:34:37.5037757Z  Experimental: false
+2026-02-12T08:34:37.5040829Z  Insecure Registries:
+2026-02-12T08:34:37.5041646Z   ::1/128
+2026-02-12T08:34:37.5042385Z   127.0.0.0/8
+2026-02-12T08:34:37.5050166Z  Live Restore Enabled: false
+2026-02-12T08:34:37.5053464Z
+2026-02-12T08:34:37.5054360Z ++ id -u
+2026-02-12T08:34:37.5061474Z + export HOST_USER_ID=1001
+2026-02-12T08:34:37.5064702Z + HOST_USER_ID=1001
+2026-02-12T08:34:37.5065559Z + hash docker-machine
+2026-02-12T08:34:37.5066370Z + ARTIFACTS=/home/vsts/work/1/s/build_artifacts
+2026-02-12T08:34:37.5067618Z + '[' -z linux_64_python3.10.____cpython ']'
+2026-02-12T08:34:37.5068516Z + '[' -z quay.io/condaforge/linux-anvil-x86_64:alma9 ']'
+2026-02-12T08:34:37.5069519Z + mkdir -p /home/vsts/work/1/s/build_artifacts
+2026-02-12T08:34:37.5093441Z + DONE_CANARY=/home/vsts/work/1/s/build_artifacts/conda-forge-build-done-linux_64_python3.10.____cpython
+2026-02-12T08:34:37.5109368Z + rm -f /home/vsts/work/1/s/build_artifacts/conda-forge-build-done-linux_64_python3.10.____cpython
+2026-02-12T08:34:37.5114807Z + DOCKER_RUN_ARGS=
+2026-02-12T08:34:37.5118485Z + '[' -z azure ']'
+2026-02-12T08:34:37.5128946Z ##[endgroup]
+2026-02-12T08:34:37.5201599Z ##[group]Start Docker
+2026-02-12T08:34:37.5209097Z + export UPLOAD_PACKAGES=True
+2026-02-12T08:34:37.5209895Z + UPLOAD_PACKAGES=True
+2026-02-12T08:34:37.5210510Z + export IS_PR_BUILD=True
+2026-02-12T08:34:37.5211088Z + IS_PR_BUILD=True
+2026-02-12T08:34:37.5211699Z + docker pull quay.io/condaforge/linux-anvil-x86_64:alma9
+2026-02-12T08:34:38.5812356Z alma9: Pulling from condaforge/linux-anvil-x86_64
+2026-02-12T08:34:38.5835355Z 7724defeffcd: Pulling fs layer
+2026-02-12T08:34:38.5837880Z d17f74ddd5f7: Pulling fs layer
+2026-02-12T08:34:38.5839600Z 4842c5ef9aa3: Pulling fs layer
+2026-02-12T08:34:38.5840275Z ade3354493ea: Pulling fs layer
+2026-02-12T08:34:38.5840849Z 4676238ada06: Pulling fs layer
+2026-02-12T08:34:38.5841774Z 4f4fb700ef54: Pulling fs layer
+2026-02-12T08:34:38.5842578Z 7da289718c48: Pulling fs layer
+2026-02-12T08:34:38.5843325Z 62bdddf3bca8: Pulling fs layer
+2026-02-12T08:34:38.5843909Z 3357fe789530: Pulling fs layer
+2026-02-12T08:34:38.5844507Z 87dac67d3dbf: Pulling fs layer
+2026-02-12T08:34:38.5845097Z 1363c6deeb66: Pulling fs layer
+2026-02-12T08:34:38.5845604Z 37710ad23666: Pulling fs layer
+2026-02-12T08:34:38.5846050Z e39ce8fc06e0: Pulling fs layer
+2026-02-12T08:34:38.5846440Z a05f8a24a10d: Pulling fs layer
+2026-02-12T08:34:38.5847222Z d37ec428ff1e: Pulling fs layer
+2026-02-12T08:34:38.5847598Z ade3354493ea: Waiting
+2026-02-12T08:34:38.5848078Z 4676238ada06: Waiting
+2026-02-12T08:34:38.5848406Z 4f4fb700ef54: Waiting
+2026-02-12T08:34:38.5848725Z 7da289718c48: Waiting
+2026-02-12T08:34:38.5849039Z 62bdddf3bca8: Waiting
+2026-02-12T08:34:38.5849351Z 3357fe789530: Waiting
+2026-02-12T08:34:38.5849674Z 87dac67d3dbf: Waiting
+2026-02-12T08:34:38.5850011Z 1363c6deeb66: Waiting
+2026-02-12T08:34:38.5850334Z 37710ad23666: Waiting
+2026-02-12T08:34:38.5850650Z e39ce8fc06e0: Waiting
+2026-02-12T08:34:38.5851021Z a05f8a24a10d: Waiting
+2026-02-12T08:34:38.5851656Z d37ec428ff1e: Waiting
+2026-02-12T08:34:39.0180644Z d17f74ddd5f7: Verifying Checksum
+2026-02-12T08:34:39.0181631Z d17f74ddd5f7: Download complete
+2026-02-12T08:34:39.0534137Z 4842c5ef9aa3: Verifying Checksum
+2026-02-12T08:34:39.0536172Z 4842c5ef9aa3: Download complete
+2026-02-12T08:34:39.3351407Z ade3354493ea: Download complete
+2026-02-12T08:34:39.3473220Z 4676238ada06: Verifying Checksum
+2026-02-12T08:34:39.3479693Z 4676238ada06: Download complete
+2026-02-12T08:34:39.5726930Z 4f4fb700ef54: Verifying Checksum
+2026-02-12T08:34:39.5728287Z 4f4fb700ef54: Download complete
+2026-02-12T08:34:39.6000475Z 7da289718c48: Verifying Checksum
+2026-02-12T08:34:39.6001145Z 7da289718c48: Download complete
+2026-02-12T08:34:39.8711622Z 3357fe789530: Verifying Checksum
+2026-02-12T08:34:39.8712483Z 3357fe789530: Download complete
+2026-02-12T08:34:39.8781445Z 62bdddf3bca8: Verifying Checksum
+2026-02-12T08:34:39.8781971Z 62bdddf3bca8: Download complete
+2026-02-12T08:34:40.1331870Z 87dac67d3dbf: Verifying Checksum
+2026-02-12T08:34:40.1337126Z 87dac67d3dbf: Download complete
+2026-02-12T08:34:40.3237824Z 1363c6deeb66: Verifying Checksum
+2026-02-12T08:34:40.3239115Z 1363c6deeb66: Download complete
+2026-02-12T08:34:40.4035469Z 37710ad23666: Verifying Checksum
+2026-02-12T08:34:40.4038901Z 37710ad23666: Download complete
+2026-02-12T08:34:40.4314695Z 7724defeffcd: Verifying Checksum
+2026-02-12T08:34:40.4315551Z 7724defeffcd: Download complete
+2026-02-12T08:34:40.6728673Z a05f8a24a10d: Verifying Checksum
+2026-02-12T08:34:40.6737119Z a05f8a24a10d: Download complete
+2026-02-12T08:34:40.6850906Z d37ec428ff1e: Verifying Checksum
+2026-02-12T08:34:40.6851553Z d37ec428ff1e: Download complete
+2026-02-12T08:34:43.2720642Z 7724defeffcd: Pull complete
+2026-02-12T08:34:44.8573016Z e39ce8fc06e0: Verifying Checksum
+2026-02-12T08:34:44.8573921Z e39ce8fc06e0: Download complete
+2026-02-12T08:34:45.6859288Z d17f74ddd5f7: Pull complete
+2026-02-12T08:34:45.7445409Z 4842c5ef9aa3: Pull complete
+2026-02-12T08:34:45.7919282Z ade3354493ea: Pull complete
+2026-02-12T08:34:45.8301535Z 4676238ada06: Pull complete
+2026-02-12T08:34:45.8417594Z 4f4fb700ef54: Pull complete
+2026-02-12T08:34:45.8548760Z 7da289718c48: Pull complete
+2026-02-12T08:34:45.8693577Z 62bdddf3bca8: Pull complete
+2026-02-12T08:34:45.8837089Z 3357fe789530: Pull complete
+2026-02-12T08:34:45.9067714Z 87dac67d3dbf: Pull complete
+2026-02-12T08:34:46.3763697Z 1363c6deeb66: Pull complete
+2026-02-12T08:34:46.3888098Z 37710ad23666: Pull complete
+2026-02-12T08:35:01.6188303Z e39ce8fc06e0: Pull complete
+2026-02-12T08:35:01.6369699Z a05f8a24a10d: Pull complete
+2026-02-12T08:35:01.6548379Z d37ec428ff1e: Pull complete
+2026-02-12T08:35:01.6585952Z Digest: sha256:81916e1bac3a2bbdda35dea83d79f798c1849710263b9d6a838c8fac689d741a
+2026-02-12T08:35:01.6601185Z Status: Downloaded newer image for quay.io/condaforge/linux-anvil-x86_64:alma9
+2026-02-12T08:35:01.6616154Z quay.io/condaforge/linux-anvil-x86_64:alma9
+2026-02-12T08:35:01.6641513Z + docker run -v /home/vsts/work/1/s/recipe:/home/conda/recipe_root:rw,z,delegated -v /home/vsts/work/1/s:/home/conda/feedstock_root:rw,z,delegated -e CONFIG -e HOST_USER_ID -e UPLOAD_PACKAGES -e IS_PR_BUILD -e GIT_BRANCH -e UPLOAD_ON_BRANCH -e CI -e FEEDSTOCK_NAME -e CPU_COUNT -e BUILD_WITH_CONDA_DEBUG -e BUILD_OUTPUT_ID -e flow_run_id -e remote_url -e sha -e BINSTAR_TOKEN -e FEEDSTOCK_TOKEN -e STAGING_BINSTAR_TOKEN quay.io/condaforge/linux-anvil-x86_64:alma9 bash /home/conda/feedstock_root/.scripts/build_steps.sh
+2026-02-12T08:35:01.8971596Z bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+2026-02-12T08:35:01.8972780Z bash: no job control in this shell
+2026-02-12T08:35:01.9651477Z useradd: warning: the home directory /home/conda already exists.
+2026-02-12T08:35:01.9652327Z useradd: Not copying any file from skel directory into it.
+2026-02-12T08:35:02.5420981Z + export FEEDSTOCK_ROOT=/home/conda/feedstock_root
+2026-02-12T08:35:02.5428449Z + FEEDSTOCK_ROOT=/home/conda/feedstock_root
+2026-02-12T08:35:02.5430844Z + source /home/conda/feedstock_root/.scripts/logging_utils.sh
+2026-02-12T08:35:02.5439143Z + export PYTHONUNBUFFERED=1
+2026-02-12T08:35:02.5441502Z + PYTHONUNBUFFERED=1
+2026-02-12T08:35:02.5445182Z + export RECIPE_ROOT=/home/conda/recipe_root
+2026-02-12T08:35:02.5445623Z + RECIPE_ROOT=/home/conda/recipe_root
+2026-02-12T08:35:02.5446212Z + export CI_SUPPORT=/home/conda/feedstock_root/.ci_support
+2026-02-12T08:35:02.5448659Z + CI_SUPPORT=/home/conda/feedstock_root/.ci_support
+2026-02-12T08:35:02.5449094Z ##[endgroup]
+2026-02-12T08:35:02.5449413Z ##[group]Configuring conda
+2026-02-12T08:35:02.5449817Z + export CONFIG_FILE=/home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:02.5450252Z + CONFIG_FILE=/home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:02.5450593Z + cat
+2026-02-12T08:35:02.5465970Z + pushd /home/conda/feedstock_root
+2026-02-12T08:35:02.5468690Z ~/feedstock_root ~
+2026-02-12T08:35:02.5477205Z ++ uname -m
+2026-02-12T08:35:02.5497567Z + arch=x86_64
+2026-02-12T08:35:02.5498037Z + [[ x86_64 == \x\8\6\_\6\4 ]]
+2026-02-12T08:35:02.5501262Z + arch=64
+2026-02-12T08:35:02.5503295Z + sed -i.bak -e 's/platforms = .*/platforms = ["linux-64"]/' -e 's/# __PLATFORM_SPECIFIC_ENV__ =/docker-build-linux-64 =/' pixi.toml
+2026-02-12T08:35:02.5524165Z Creating environment
+2026-02-12T08:35:02.5527585Z + echo 'Creating environment'
+2026-02-12T08:35:02.5529751Z + PIXI_CACHE_DIR=/opt/conda
+2026-02-12T08:35:02.5531339Z + pixi install --environment docker-build-linux-64
+2026-02-12T08:35:10.3405439Z ✔ The docker-build-linux-64 environment has been installed.
+2026-02-12T08:35:10.4010062Z + pixi list
+2026-02-12T08:35:10.4462474Z Name                        Version       Build                        Size  Kind   Source
+2026-02-12T08:35:10.4464367Z _libgcc_mutex               0.1           conda_forge              2.50 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4481053Z _openmp_mutex               4.5           2_gnu                   23.07 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4481677Z anaconda-auth               0.12.3        pyhd8ed1ab_0            44.11 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4482208Z anaconda-cli-base           0.8.1         pyhcf101f3_0            28.99 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4482742Z anaconda-client             1.14.1        pyhcf101f3_0            80.76 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4483243Z annotated-doc               0.0.4         pyhcf101f3_0            13.89 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4483747Z annotated-types             0.7.0         pyhd8ed1ab_1            17.65 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4485412Z archspec                    0.2.5         pyhd8ed1ab_0            49.70 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4485949Z attrs                       25.4.0        pyhcf101f3_1            63.24 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4486964Z backports                   1.0           pyhd8ed1ab_5             6.90 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4488344Z backports.tarfile           1.2.0         pyhcf101f3_2            34.90 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4490224Z backports.zstd              1.3.0         py310h69bd2ac_0        186.80 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4497097Z beautifulsoup4              4.14.3        pyha770c72_0            88.28 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4497649Z boltons                     25.0.0        pyhd8ed1ab_0           295.21 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4498163Z brotli-python               1.2.0         py310hba01987_1        358.50 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4498885Z bzip2                       1.0.8         hda65f42_8             254.24 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4499376Z c-ares                      1.34.6        hb03c661_0             203.01 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4499890Z ca-certificates             2026.1.4      hbd8a1cb_0             143.08 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4500524Z certifi                     2026.1.4      pyhd8ed1ab_0           147.43 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4501017Z cffi                        2.0.0         py310he7384ee_1        239.03 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4516959Z chardet                     5.2.0         pyhd8ed1ab_3           129.07 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4517531Z charset-normalizer          3.4.4         pyhd8ed1ab_0            49.77 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4518055Z click                       8.3.1         pyh8f84b5b_1            95.39 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4518547Z conda                       26.1.0        py310hff52083_0        976.24 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4519048Z conda-build                 26.1.0        pyh31ec981_102         309.88 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4519534Z conda-env                   2.6.0         1                        2.26 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4520034Z conda-forge-ci-setup        4.24.2        py310h1648fa5_101       73.84 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4520498Z conda-forge-metadata        0.12.0        pyhcf101f3_1            19.85 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4520919Z conda-index                 0.7.0         pyhd8ed1ab_0           194.43 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4521346Z conda-libmamba-solver       25.11.0       pyhd8ed1ab_1            55.63 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4521773Z conda-oci-mirror            0.2.3         pyhd8ed1ab_0            31.91 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4522202Z conda-package-handling      2.4.0         pyh7900ff3_2           251.95 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4522641Z conda-package-streaming     0.12.0        pyhd8ed1ab_0            21.42 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4523065Z cpp-expected                1.3.1         h171cf75_0              23.71 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4523475Z cryptography                46.0.5        py310hb288b08_0          1.59 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4523881Z dbus                        1.16.2        h24cb091_1             437.16 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4524285Z defusedxml                  0.7.1         pyhd8ed1ab_0            23.50 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4524690Z deprecated                  1.3.1         pyhd8ed1ab_1            15.52 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4525095Z distro                      1.9.0         pyhd8ed1ab_1            40.79 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4525504Z evalidate                   2.0.5         pyhe01879c_0            16.24 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4525912Z filelock                    3.20.3        pyhd8ed1ab_0            18.22 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4526311Z fmt                         12.1.0        hff5e90c_0             193.46 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4527573Z frozendict                  2.4.7         py310h7c4b9e2_0         48.75 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4528081Z git                         2.52.0        pl5321h6d3cee1_1        10.94 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4528844Z h2                          4.3.0         pyhcf101f3_0            93.72 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4529341Z hpack                       4.1.0         pyhd8ed1ab_0            30.01 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4532697Z hyperframe                  6.1.0         pyhd8ed1ab_0            16.99 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4534694Z icu                         78.2          h33c6efd_0              12.14 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4537163Z idna                        3.11          pyhd8ed1ab_0            49.53 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4541075Z importlib-metadata          8.7.0         pyhe01879c_1            33.83 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4557297Z importlib_resources         6.5.2         pyhd8ed1ab_0            32.99 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4557934Z jaraco.classes              3.4.0         pyhcf101f3_3            14.48 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4558465Z jaraco.context              6.1.0         pyhcf101f3_0            15.20 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4558971Z jaraco.functools            4.4.0         pyhcf101f3_1            18.30 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4559463Z jeepney                     0.9.0         pyhd8ed1ab_0            39.08 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4559953Z jinja2                      3.1.6         pyhcf101f3_1           117.86 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4560447Z joblib                      1.5.3         pyhd8ed1ab_0           221.14 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4560929Z jq                          1.8.1         h73b1eb8_0             305.84 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4561427Z jsonpatch                   1.33          pyhd8ed1ab_1            16.91 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4561916Z jsonpointer                 3.0.0         pyhcf101f3_3            13.64 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4562416Z jsonschema                  4.26.0        pyhcf101f3_0            80.43 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4562933Z jsonschema-specifications   2025.9.1      pyhcf101f3_0            18.79 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4563443Z jupyter_core                5.9.1         pyhc90fa1f_0            63.97 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4563935Z keyring                     25.7.0        pyha804496_0            36.83 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4564435Z keyutils                    1.6.3         hb9d3cd8_0             130.95 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4564923Z krb5                        1.21.3        h659f571_0               1.31 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4565398Z lcms2                       2.18          h0c24ade_0             244.10 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4565899Z ld_impl_linux-64            2.45.1        default_hbd61a6d_101   708.50 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4566409Z lerc                        4.0.0         h0aef613_1             258.05 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4567340Z libarchive                  3.8.5         gpl_hc2c16d8_100       865.33 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4567871Z libcurl                     8.18.0        h4e3cde8_0             452.09 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4568473Z libdeflate                  1.25          h17f619e_0              71.77 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4568976Z libedit                     3.1.20250104  pl5321h7949ede_0       131.52 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4577122Z libev                       4.33          hd590300_2             110.12 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4577640Z libexpat                    2.7.3         hecca717_0              74.85 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4578124Z libffi                      3.5.2         h3435931_0              57.22 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4578618Z libfreetype                 2.14.1        ha770c72_0               7.48 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4579114Z libfreetype6                2.14.1        h73754d4_0             377.67 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4579609Z libgcc                      15.2.0        he0feb66_17           1016.09 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4580099Z libgcc-ng                   15.2.0        h69a702a_17             26.90 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4580582Z libglib                     2.86.3        h6548e54_0               3.76 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4581060Z libgomp                     15.2.0        he0feb66_17            589.19 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4581552Z libiconv                    1.18          h3b78370_2             771.66 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4582059Z libjpeg-turbo               3.1.2         hb03c661_0             618.86 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4582546Z liblief                     0.17.1        hecca717_0               2.08 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4597366Z liblzma                     5.8.2         hb03c661_0             110.55 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4597930Z libmamba                    2.5.0         hd28c85e_0               2.45 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4598432Z libmamba-spdlog             2.5.0         h12fcf84_0              19.92 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4598936Z libmambapy                  2.5.0         py310h74f1d5f_0        920.93 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4599440Z libnghttp2                  1.67.0        had1ee68_0             650.98 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4599947Z libnsl                      2.0.1         hb9d3cd8_1              32.94 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4600429Z libpng                      1.6.55        h421ea60_0             310.22 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4600917Z libsolv                     0.7.35        h9463b59_0             506.22 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4601407Z libsqlite                   3.51.2        hf4e2dac_0             920.71 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4601897Z libssh2                     1.11.1        hcf80075_0             297.65 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4602392Z libstdcxx                   15.2.0        h934c35e_17              5.58 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4603054Z libstdcxx-ng                15.2.0        hdf11a46_17             26.93 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4603550Z libtiff                     4.7.1         h9d88235_1             425.07 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4604127Z libuuid                     2.41.3        h5347b49_0              39.37 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4604621Z libwebp-base                1.6.0         hd42ef1d_0             418.96 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4605109Z libxcb                      1.17.0        h8a09558_0             386.61 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4605603Z libxcrypt                   4.4.36        hd590300_1              98.04 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4606095Z libxml2                     2.15.1        he237659_1              44.34 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4606757Z libxml2-16                  2.15.1        hca6bf5a_1             542.72 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4607278Z libzlib                     1.3.1         hb9d3cd8_2              59.53 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4608903Z lz4-c                       1.10.0        h5888daf_1             163.14 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4609432Z lzo                         2.10          h280c20c_1002          186.58 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4617233Z mamba                       2.5.0         h9835478_0             553.88 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4617822Z markdown-it-py              4.0.0         pyhd8ed1ab_0            63.22 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4618336Z markupsafe                  3.0.3         py310h3406613_0         23.12 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4618849Z mbedtls                     3.6.3.1       h5888daf_0             928.32 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4619333Z mdurl                       0.1.2         pyhd8ed1ab_1            14.13 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4619827Z menuinst                    2.4.2         py310hff52083_0        151.93 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4620331Z more-itertools              10.8.0        pyhcf101f3_1            67.59 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4620840Z msgpack-python              1.1.2         py310h03d9f68_1         92.88 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4621342Z nbformat                    5.10.4        pyhd8ed1ab_1            98.58 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4622337Z ncurses                     6.5           h2d0b736_3             870.74 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4634336Z nlohmann_json-abi           3.12.0        h0f90c79_1               4.23 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4634933Z oniguruma                   6.9.10        hb9d3cd8_0             242.84 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4635440Z openjpeg                    2.5.4         h55fea9a_0             347.07 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4635930Z openssl                     3.6.1         h35e630c_1               3.02 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4636424Z oras-py                     0.1.14        pyhd8ed1ab_0            33.57 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4637191Z packaging                   26.0          pyhcf101f3_0            70.32 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4637837Z patch                       2.8           hb03c661_1002          114.47 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4638381Z patchelf                    0.17.2        h58526e2_0              91.84 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4638973Z pcre2                       10.47         haa7fec5_0               1.17 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4639460Z perl                        5.32.1        7_hd590300_perl5        12.73 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4639968Z pillow                      12.1.1        py310h5a73078_0        862.93 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4640451Z pip                         26.0.1        pyh8b19718_0             1.13 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4640929Z pkce                        1.0.3         pyhd8ed1ab_1             8.91 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4641421Z pkginfo                     1.12.1.2      pyhd8ed1ab_0            29.82 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4641918Z platformdirs                4.5.1         pyhcf101f3_0            23.36 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4657200Z pluggy                      1.6.0         pyhf9edf01_1            25.27 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4657786Z psutil                      7.2.2         py310h139afa4_0        174.82 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4658305Z pthread-stubs               0.4           hb9d3cd8_1002            8.06 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4658830Z py-lief                     0.17.1        py310hea6c23e_0          1.60 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4659324Z pybind11-abi                11            hc364b38_1              14.33 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4659823Z pycosat                     0.6.6         py310h7c4b9e2_3         82.77 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4660259Z pycparser                   2.22          pyh29332c3_1           107.52 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4660674Z pydantic                    2.12.5        pyhcf101f3_1           332.50 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4661098Z pydantic-core               2.41.5        py310hd8f68c5_1          1.84 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4661518Z pydantic-settings           2.12.0        pyh3cfb1c2_0            42.73 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4661932Z pygments                    2.19.2        pyhd8ed1ab_0           868.44 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4662338Z pyjwt                       2.11.0        pyhd8ed1ab_0            29.44 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4662739Z pysocks                     1.7.1         pyha55dd90_7            20.59 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4663146Z python                      3.10.19       h3c07f61_3_cpython      24.18 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4663583Z python-dateutil             2.9.0.post0   pyhe01879c_2           227.84 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4664006Z python-dotenv               1.2.1         pyhcf101f3_0            26.29 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4664434Z python-fastjsonschema       2.21.2        pyhe01879c_0           238.89 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4664863Z python-libarchive-c         5.3           pyhe01879c_1            28.93 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4665402Z python_abi                  3.10          8_cp310                  6.83 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4665805Z pytz                        2025.2        pyhd8ed1ab_0           184.58 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4666294Z pyyaml                      6.0.3         py310h3406613_1        172.38 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4666877Z rattler-build               0.57.2        he64ecbb_1              18.38 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4667314Z rattler-build-conda-compat  1.4.11        pyhd8ed1ab_0            44.26 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4667738Z readchar                    4.2.1         pyhe01879c_0            14.78 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4668139Z readline                    8.3           h853b02a_0             336.99 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4668545Z referencing                 0.37.0        pyhcf101f3_0            50.57 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4668956Z reproc                      14.2.5.post0  hb9d3cd8_0              33.39 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4669381Z reproc-cpp                  14.2.5.post0  h5888daf_0              25.06 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4669794Z requests                    2.32.5        pyhcf101f3_1            62.11 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4670208Z requests-toolbelt           1.0.0         pyhd8ed1ab_1            43.25 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4670623Z rich                        14.3.2        pyhcf101f3_0           203.39 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4671030Z ripgrep                     15.1.0        hdab8a38_0               1.66 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4671437Z rpds-py                     0.30.0        py310hd8f68c5_0        373.92 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4671862Z ruamel.yaml                 0.18.17       py310h139afa4_2        214.03 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4672292Z ruamel.yaml.clib            0.2.15        py310h139afa4_1        149.26 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4672713Z secretstorage               3.4.1         py310hff52083_0         27.20 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4673119Z semver                      3.0.4         pyhcf101f3_1            22.00 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4673525Z setuptools                  82.0.0        pyh332efcf_0           622.56 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4673938Z shellingham                 1.5.4         pyhd8ed1ab_2            14.67 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4674351Z shyaml                      0.6.2         pyhd3deb0d_0            21.04 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4674755Z simdjson                    4.2.4         hb700be7_0             288.08 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4675158Z six                         1.17.0        pyhe01879c_1            18.02 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4675559Z soupsieve                   2.8.3         pyhd8ed1ab_0            37.29 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4675964Z spdlog                      1.17.0        hab81395_1             192.07 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4676366Z tk                          8.6.13        noxft_h366c992_103       3.15 MiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4697441Z tomli                       2.4.0         pyhcf101f3_0            20.95 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4698024Z tomlkit                     0.14.0        pyha770c72_0            38.30 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4698679Z tqdm                        4.67.3        pyh8f84b5b_0            91.93 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4699181Z traitlets                   5.14.3        pyhd8ed1ab_1           107.47 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4699683Z truststore                  0.10.4        pyhcf101f3_0            23.71 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4700176Z typer                       0.23.0        pyhcf101f3_0           118.03 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4700672Z typing-extensions           4.15.0        h396c80c_0              89.24 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4701188Z typing-inspection           0.4.2         pyhd8ed1ab_1            18.48 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4701711Z typing_extensions           4.15.0        pyhcf101f3_0            50.48 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4702210Z tzdata                      2025c         hc9c84f9_1             116.34 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4702700Z urllib3                     2.6.3         pyhd8ed1ab_0           100.75 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4703188Z wheel                       0.46.3        pyhd8ed1ab_0            31.11 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4704001Z wrapt                       2.1.1         py310h7c4b9e2_0         77.12 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4704578Z xorg-libxau                 1.0.12        hb03c661_1              14.96 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4705112Z xorg-libxdmcp               1.1.5         hb03c661_1              20.11 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4705641Z yaml                        0.2.5         h280c20c_3              83.19 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4706132Z yaml-cpp                    0.8.0         h3f2d84a_0             218.29 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4706776Z zipp                        3.23.0        pyhcf101f3_1            23.63 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4707288Z zlib-ng                     2.3.3         hceb46e0_1             119.74 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4707838Z zstandard                   0.25.0        py310h139afa4_1        444.94 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4708363Z zstd                        1.5.7         hb78ec9c_6             587.28 KiB  conda  https://conda.anaconda.org/conda-forge
+2026-02-12T08:35:10.4709875Z + echo 'Activating environment'
+2026-02-12T08:35:10.4710322Z Activating environment
+2026-02-12T08:35:10.4710769Z ++ pixi shell-hook --environment docker-build-linux-64
+2026-02-12T08:35:10.5197935Z + eval '. /opt/conda/etc/conda/deactivate.d/libglib_deactivate.sh
+2026-02-12T08:35:10.5200248Z export PATH="/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin:/opt/conda/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/conda/bin"
+2026-02-12T08:35:10.5202483Z export CONDA_SHLVL=2
+2026-02-12T08:35:10.5217045Z export CONDA_ENV_SHLVL_2_CONDA_PREFIX=/opt/conda
+2026-02-12T08:35:10.5219032Z export CONDA_PREFIX=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64
+2026-02-12T08:35:10.5222824Z export PIXI_PROJECT_MANIFEST=/home/conda/feedstock_root/pixi.toml
+2026-02-12T08:35:10.5238404Z export PIXI_EXE=/opt/conda/bin/pixi
+2026-02-12T08:35:10.5250703Z export PIXI_PROJECT_NAME=pdftopng-feedstock
+2026-02-12T08:35:10.5252820Z export PIXI_PROJECT_ROOT=/home/conda/feedstock_root
+2026-02-12T08:35:10.5254518Z export PIXI_PROJECT_VERSION=3.54.2
+2026-02-12T08:35:10.5256337Z export PIXI_IN_SHELL=1
+2026-02-12T08:35:10.5261639Z export CONDA_ENV_SHLVL_2_CONDA_DEFAULT_ENV=base
+2026-02-12T08:35:10.5266295Z export CONDA_DEFAULT_ENV=pdftopng-feedstock:docker-build-linux-64
+2026-02-12T08:35:10.5278939Z export PIXI_ENVIRONMENT_NAME=docker-build-linux-64
+2026-02-12T08:35:10.5280519Z export PIXI_ENVIRONMENT_PLATFORMS=linux-64
+2026-02-12T08:35:10.5281730Z export PIXI_PROMPT='\''(pdftopng-feedstock:docker-build-linux-64) '\''
+2026-02-12T08:35:10.5282349Z . /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/conda/activate.d/libglib_activate.sh
+2026-02-12T08:35:10.5282887Z . /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/conda/activate.d/libxml2-split_activate.sh
+2026-02-12T08:35:10.5309650Z source /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/share/bash-completion/completions/*
+2026-02-12T08:35:10.5312044Z
+2026-02-12T08:35:10.5313549Z # shellcheck shell=bash
+2026-02-12T08:35:10.5320949Z pixi() {
+2026-02-12T08:35:10.5336944Z     local first_arg="${1-}"
+2026-02-12T08:35:10.5352422Z
+2026-02-12T08:35:10.5355545Z     "${PIXI_EXE-}" "$@" || return $?
+2026-02-12T08:35:10.5362007Z
+2026-02-12T08:35:10.5363505Z     case "${first_arg-}" in
+2026-02-12T08:35:10.5383401Z     add | a | remove | rm | install | i)
+2026-02-12T08:35:10.5391204Z         eval "$("$PIXI_EXE" shell-hook --change-ps1 false)"
+2026-02-12T08:35:10.5394775Z         hash -r
+2026-02-12T08:35:10.5397197Z         ;;
+2026-02-12T08:35:10.5410044Z     esac || :
+2026-02-12T08:35:10.5411227Z
+2026-02-12T08:35:10.5412492Z     return 0
+2026-02-12T08:35:10.5413642Z }
+2026-02-12T08:35:10.5414382Z
+2026-02-12T08:35:10.5414954Z export PS1="(pdftopng-feedstock:docker-build-linux-64) ${PS1:-}"'
+2026-02-12T08:35:10.5417414Z ++ . /opt/conda/etc/conda/deactivate.d/libglib_deactivate.sh
+2026-02-12T08:35:10.5417897Z +++ export GSETTINGS_SCHEMA_DIR=
+2026-02-12T08:35:10.5446640Z +++ GSETTINGS_SCHEMA_DIR=
+2026-02-12T08:35:10.5448044Z +++ unset GSETTINGS_SCHEMA_DIR_CONDA_BACKUP
+2026-02-12T08:35:10.5448537Z +++ '[' -z ']'
+2026-02-12T08:35:10.5449065Z +++ unset GSETTINGS_SCHEMA_DIR
+2026-02-12T08:35:10.5449648Z ++ export PATH=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin:/opt/conda/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/conda/bin
+2026-02-12T08:35:10.5450385Z ++ PATH=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin:/opt/conda/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/conda/bin
+2026-02-12T08:35:10.5450987Z ++ export CONDA_SHLVL=2
+2026-02-12T08:35:10.5451424Z ++ CONDA_SHLVL=2
+2026-02-12T08:35:10.5451872Z ++ export CONDA_ENV_SHLVL_2_CONDA_PREFIX=/opt/conda
+2026-02-12T08:35:10.5452364Z ++ CONDA_ENV_SHLVL_2_CONDA_PREFIX=/opt/conda
+2026-02-12T08:35:10.5452886Z ++ export CONDA_PREFIX=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64
+2026-02-12T08:35:10.5453435Z ++ CONDA_PREFIX=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64
+2026-02-12T08:35:10.5453968Z ++ export PIXI_PROJECT_MANIFEST=/home/conda/feedstock_root/pixi.toml
+2026-02-12T08:35:10.5454491Z ++ PIXI_PROJECT_MANIFEST=/home/conda/feedstock_root/pixi.toml
+2026-02-12T08:35:10.5454992Z ++ export PIXI_EXE=/opt/conda/bin/pixi
+2026-02-12T08:35:10.5455391Z ++ PIXI_EXE=/opt/conda/bin/pixi
+2026-02-12T08:35:10.5455794Z ++ export PIXI_PROJECT_NAME=pdftopng-feedstock
+2026-02-12T08:35:10.5456202Z ++ PIXI_PROJECT_NAME=pdftopng-feedstock
+2026-02-12T08:35:10.5456913Z ++ export PIXI_PROJECT_ROOT=/home/conda/feedstock_root
+2026-02-12T08:35:10.5457372Z ++ PIXI_PROJECT_ROOT=/home/conda/feedstock_root
+2026-02-12T08:35:10.5457777Z ++ export PIXI_PROJECT_VERSION=3.54.2
+2026-02-12T08:35:10.5458202Z ++ PIXI_PROJECT_VERSION=3.54.2
+2026-02-12T08:35:10.5458605Z ++ export PIXI_IN_SHELL=1
+2026-02-12T08:35:10.5459019Z ++ PIXI_IN_SHELL=1
+2026-02-12T08:35:10.5459625Z ++ export CONDA_ENV_SHLVL_2_CONDA_DEFAULT_ENV=base
+2026-02-12T08:35:10.5460205Z ++ CONDA_ENV_SHLVL_2_CONDA_DEFAULT_ENV=base
+2026-02-12T08:35:10.5460732Z ++ export CONDA_DEFAULT_ENV=pdftopng-feedstock:docker-build-linux-64
+2026-02-12T08:35:10.5461291Z ++ CONDA_DEFAULT_ENV=pdftopng-feedstock:docker-build-linux-64
+2026-02-12T08:35:10.5461966Z ++ export PIXI_ENVIRONMENT_NAME=docker-build-linux-64
+2026-02-12T08:35:10.5462469Z ++ PIXI_ENVIRONMENT_NAME=docker-build-linux-64
+2026-02-12T08:35:10.5462944Z ++ export PIXI_ENVIRONMENT_PLATFORMS=linux-64
+2026-02-12T08:35:10.5463415Z ++ PIXI_ENVIRONMENT_PLATFORMS=linux-64
+2026-02-12T08:35:10.5463929Z ++ export 'PIXI_PROMPT=(pdftopng-feedstock:docker-build-linux-64) '
+2026-02-12T08:35:10.5464601Z ++ PIXI_PROMPT='(pdftopng-feedstock:docker-build-linux-64) '
+2026-02-12T08:35:10.5465219Z ++ . /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/conda/activate.d/libglib_activate.sh
+2026-02-12T08:35:10.5465782Z +++ export GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=
+2026-02-12T08:35:10.5466458Z +++ GSETTINGS_SCHEMA_DIR_CONDA_BACKUP=
+2026-02-12T08:35:10.5468988Z +++ export GSETTINGS_SCHEMA_DIR=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/share/glib-2.0/schemas
+2026-02-12T08:35:10.5471097Z +++ GSETTINGS_SCHEMA_DIR=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/share/glib-2.0/schemas
+2026-02-12T08:35:10.5473209Z ++ . /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/conda/activate.d/libxml2-split_activate.sh
+2026-02-12T08:35:10.5474581Z +++ test -n 'file:///opt/conda/etc/xml/catalog file:///etc/xml/catalog'
+2026-02-12T08:35:10.5475061Z +++ xml_catalog_files_libxml2='file:///opt/conda/etc/xml/catalog file:///etc/xml/catalog'
+2026-02-12T08:35:10.5475539Z +++ XML_CATALOG_FILES='file:///opt/conda/etc/xml/catalog file:///etc/xml/catalog '
+2026-02-12T08:35:10.5475957Z +++ conda_catalog_files=
+2026-02-12T08:35:10.5476320Z +++ ifs_libxml2='
+2026-02-12T08:35:10.5476923Z '
+2026-02-12T08:35:10.5477290Z +++ IFS=' '
+2026-02-12T08:35:10.5477695Z +++ rem=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64
+2026-02-12T08:35:10.5478096Z +++ for pre in ${rem}
+2026-02-12T08:35:10.5478511Z +++ test '' = /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64
+2026-02-12T08:35:10.5478984Z +++ conda_catalog_files=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64
+2026-02-12T08:35:10.5479393Z +++ rem=
+2026-02-12T08:35:10.5479724Z +++ IFS='
+2026-02-12T08:35:10.5480048Z '
+2026-02-12T08:35:10.5480500Z +++ conda_catalog_files='file:///home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/xml/catalog file:///etc/xml/catalog'
+2026-02-12T08:35:10.5481136Z +++ export 'XML_CATALOG_FILES=file:///opt/conda/etc/xml/catalog file:///etc/xml/catalog file:///home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/xml/catalog file:///etc/xml/catalog'
+2026-02-12T08:35:10.5481804Z +++ XML_CATALOG_FILES='file:///opt/conda/etc/xml/catalog file:///etc/xml/catalog file:///home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/xml/catalog file:///etc/xml/catalog'
+2026-02-12T08:35:10.5482339Z +++ unset conda_catalog_files ifs_libxml2 rem
+2026-02-12T08:35:10.5482933Z ++ source /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/share/bash-completion/completions/git /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/share/bash-completion/completions/rattler-build
+2026-02-12T08:35:10.5483513Z +++ case "$COMP_WORDBREAKS" in
+2026-02-12T08:35:10.5483865Z +++ : great
+2026-02-12T08:35:10.5484229Z +++ type _get_comp_words_by_ref
+2026-02-12T08:35:10.5484585Z +++ [[ -n '' ]]
+2026-02-12T08:35:10.5484948Z ++++ compgen -v __gitcomp_builtin_
+2026-02-12T08:35:10.5485306Z +++ unset
+2026-02-12T08:35:10.5485657Z +++ __git_merge_strategies=
+2026-02-12T08:35:10.5486072Z +++ __git_merge_strategy_options='ours theirs subtree subtree= patience
+2026-02-12T08:35:10.5486676Z 	histogram diff-algorithm= ignore-space-change ignore-all-space
+2026-02-12T08:35:10.5487150Z 	ignore-space-at-eol renormalize no-renormalize no-renames
+2026-02-12T08:35:10.5487724Z 	find-renames find-renames= rename-threshold='
+2026-02-12T08:35:10.5488122Z +++ __git_all_commands=
+2026-02-12T08:35:10.5488520Z +++ __git_whitespacelist='nowarn warn error error-all fix'
+2026-02-12T08:35:10.5488948Z +++ __git_patchformat='mbox stgit stgit-series hg mboxrd'
+2026-02-12T08:35:10.5489459Z +++ __git_showcurrentpatch='diff raw'
+2026-02-12T08:35:10.5489914Z +++ __git_am_inprogress_options='--skip --continue --resolved --abort --quit --show-current-patch'
+2026-02-12T08:35:10.5490369Z +++ __git_quoted_cr='nowarn warn strip'
+2026-02-12T08:35:10.5490830Z +++ __git_ref_fieldlist='refname objecttype objectsize objectname upstream push HEAD symref'
+2026-02-12T08:35:10.5491324Z +++ __git_sequencer_inprogress_options='--continue --quit --abort --skip'
+2026-02-12T08:35:10.5491791Z +++ __git_cherry_pick_inprogress_options='--continue --quit --abort --skip'
+2026-02-12T08:35:10.5492224Z +++ __git_untracked_file_modes='all no normal'
+2026-02-12T08:35:10.5492643Z +++ __git_diff_algorithms='myers minimal patience histogram'
+2026-02-12T08:35:10.5493090Z +++ __git_diff_submodule_formats='diff log short'
+2026-02-12T08:35:10.5493530Z +++ __git_color_moved_opts='no default plain blocks zebra dimmed-zebra'
+2026-02-12T08:35:10.5493991Z +++ __git_color_moved_ws_opts='no ignore-space-at-eol ignore-space-change
+2026-02-12T08:35:10.5494435Z 			ignore-all-space allow-indentation-change'
+2026-02-12T08:35:10.5494860Z +++ __git_ws_error_highlight_opts='context old new all default'
+2026-02-12T08:35:10.5495305Z +++ __git_diff_common_options='--stat --numstat --shortstat --summary
+2026-02-12T08:35:10.5495745Z 			--patch-with-stat --name-only --name-status --color
+2026-02-12T08:35:10.5496169Z 			--no-color --color-words --no-renames --check
+2026-02-12T08:35:10.5496803Z 			--color-moved --color-moved= --no-color-moved
+2026-02-12T08:35:10.5497274Z 			--color-moved-ws= --no-color-moved-ws
+2026-02-12T08:35:10.5497724Z 			--full-index --binary --abbrev --diff-filter=
+2026-02-12T08:35:10.5498183Z 			--find-copies --find-object --find-renames
+2026-02-12T08:35:10.5498601Z 			--no-relative --relative
+2026-02-12T08:35:10.5498997Z 			--find-copies-harder --ignore-cr-at-eol
+2026-02-12T08:35:10.5499414Z 			--text --ignore-space-at-eol --ignore-space-change
+2026-02-12T08:35:10.5499852Z 			--ignore-all-space --ignore-blank-lines --exit-code
+2026-02-12T08:35:10.5500277Z 			--quiet --ext-diff --no-ext-diff --unified=
+2026-02-12T08:35:10.5500703Z 			--no-prefix --src-prefix= --dst-prefix=
+2026-02-12T08:35:10.5501105Z 			--inter-hunk-context= --function-context
+2026-02-12T08:35:10.5501507Z 			--patience --histogram --minimal
+2026-02-12T08:35:10.5508956Z 			--raw --word-diff --word-diff-regex=
+2026-02-12T08:35:10.5513479Z 			--dirstat --dirstat= --dirstat-by-file
+2026-02-12T08:35:10.5515527Z 			--dirstat-by-file= --cumulative
+2026-02-12T08:35:10.5517849Z 			--diff-algorithm= --default-prefix
+2026-02-12T08:35:10.5519477Z 			--submodule --submodule= --ignore-submodules
+2026-02-12T08:35:10.5520205Z 			--indent-heuristic --no-indent-heuristic
+2026-02-12T08:35:10.5520665Z 			--textconv --no-textconv --break-rewrites
+2026-02-12T08:35:10.5521088Z 			--patch --no-patch --cc --combined-all-paths
+2026-02-12T08:35:10.5521508Z 			--anchored= --compact-summary --ignore-matching-lines=
+2026-02-12T08:35:10.5521948Z 			--irreversible-delete --line-prefix --no-stat
+2026-02-12T08:35:10.5522680Z 			--output= --output-indicator-context=
+2026-02-12T08:35:10.5523077Z 			--output-indicator-new= --output-indicator-old=
+2026-02-12T08:35:10.5523417Z 			--ws-error-highlight=
+2026-02-12T08:35:10.5523743Z 			--pickaxe-all --pickaxe-regex --patch-with-raw
+2026-02-12T08:35:10.5524049Z '
+2026-02-12T08:35:10.5524355Z +++ __git_diff_difftool_options='--cached --staged
+2026-02-12T08:35:10.5524700Z 			--base --ours --theirs --no-index --merge-base
+2026-02-12T08:35:10.5525041Z 			--ita-invisible-in-index --ita-visible-in-index
+2026-02-12T08:35:10.5525385Z 			--stat --numstat --shortstat --summary
+2026-02-12T08:35:10.5525727Z 			--patch-with-stat --name-only --name-status --color
+2026-02-12T08:35:10.5526213Z 			--no-color --color-words --no-renames --check
+2026-02-12T08:35:10.5526988Z 			--color-moved --color-moved= --no-color-moved
+2026-02-12T08:35:10.5527476Z 			--color-moved-ws= --no-color-moved-ws
+2026-02-12T08:35:10.5527947Z 			--full-index --binary --abbrev --diff-filter=
+2026-02-12T08:35:10.5528541Z 			--find-copies --find-object --find-renames
+2026-02-12T08:35:10.5528970Z 			--no-relative --relative
+2026-02-12T08:35:10.5529397Z 			--find-copies-harder --ignore-cr-at-eol
+2026-02-12T08:35:10.5529845Z 			--text --ignore-space-at-eol --ignore-space-change
+2026-02-12T08:35:10.5530301Z 			--ignore-all-space --ignore-blank-lines --exit-code
+2026-02-12T08:35:10.5530778Z 			--quiet --ext-diff --no-ext-diff --unified=
+2026-02-12T08:35:10.5531207Z 			--no-prefix --src-prefix= --dst-prefix=
+2026-02-12T08:35:10.5531640Z 			--inter-hunk-context= --function-context
+2026-02-12T08:35:10.5532065Z 			--patience --histogram --minimal
+2026-02-12T08:35:10.5532489Z 			--raw --word-diff --word-diff-regex=
+2026-02-12T08:35:10.5532934Z 			--dirstat --dirstat= --dirstat-by-file
+2026-02-12T08:35:10.5533374Z 			--dirstat-by-file= --cumulative
+2026-02-12T08:35:10.5533788Z 			--diff-algorithm= --default-prefix
+2026-02-12T08:35:10.5534213Z 			--submodule --submodule= --ignore-submodules
+2026-02-12T08:35:10.5534654Z 			--indent-heuristic --no-indent-heuristic
+2026-02-12T08:35:10.5535099Z 			--textconv --no-textconv --break-rewrites
+2026-02-12T08:35:10.5535540Z 			--patch --no-patch --cc --combined-all-paths
+2026-02-12T08:35:10.5535991Z 			--anchored= --compact-summary --ignore-matching-lines=
+2026-02-12T08:35:10.5536444Z 			--irreversible-delete --line-prefix --no-stat
+2026-02-12T08:35:10.5537115Z 			--output= --output-indicator-context=
+2026-02-12T08:35:10.5537581Z 			--output-indicator-new= --output-indicator-old=
+2026-02-12T08:35:10.5538011Z 			--ws-error-highlight=
+2026-02-12T08:35:10.5538495Z 			--pickaxe-all --pickaxe-regex --patch-with-raw
+2026-02-12T08:35:10.5538911Z '
+2026-02-12T08:35:10.5539355Z +++ __git_mergetools_common='diffuse diffmerge ecmerge emerge kdiff3 meld opendiff
+2026-02-12T08:35:10.5539854Z 			tkdiff vimdiff nvimdiff gvimdiff xxdiff araxis p4merge
+2026-02-12T08:35:10.5540490Z 			bc codecompare smerge
+2026-02-12T08:35:10.5540872Z '
+2026-02-12T08:35:10.5541278Z +++ __git_fetch_recurse_submodules='yes on-demand no'
+2026-02-12T08:35:10.5541753Z +++ __git_format_patch_extra_options='
+2026-02-12T08:35:10.5542239Z 	--full-index --not --all --no-prefix --src-prefix=
+2026-02-12T08:35:10.5542679Z 	--dst-prefix= --notes
+2026-02-12T08:35:10.5543205Z '
+2026-02-12T08:35:10.5543617Z +++ __git_log_common_options='
+2026-02-12T08:35:10.5543952Z 	--not --all
+2026-02-12T08:35:10.5544254Z 	--branches --tags --remotes
+2026-02-12T08:35:10.5544584Z 	--first-parent --merges --no-merges
+2026-02-12T08:35:10.5544889Z 	--max-count=
+2026-02-12T08:35:10.5545177Z 	--max-age= --since= --after=
+2026-02-12T08:35:10.5545483Z 	--min-age= --until= --before=
+2026-02-12T08:35:10.5545777Z 	--min-parents= --max-parents=
+2026-02-12T08:35:10.5546084Z 	--no-min-parents --no-max-parents
+2026-02-12T08:35:10.5546386Z 	--alternate-refs --ancestry-path
+2026-02-12T08:35:10.5547215Z 	--author-date-order --basic-regexp
+2026-02-12T08:35:10.5547637Z 	--bisect --boundary --exclude-first-parent-only
+2026-02-12T08:35:10.5548050Z 	--exclude-hidden --extended-regexp
+2026-02-12T08:35:10.5548438Z 	--fixed-strings --grep-reflog
+2026-02-12T08:35:10.5548827Z 	--ignore-missing --left-only --perl-regexp
+2026-02-12T08:35:10.5549240Z 	--reflog --regexp-ignore-case --remove-empty
+2026-02-12T08:35:10.5549634Z 	--right-only --show-linear-break
+2026-02-12T08:35:10.5550018Z 	--show-notes-by-default --show-pulls
+2026-02-12T08:35:10.5550403Z 	--since-as-filter --single-worktree
+2026-02-12T08:35:10.5550748Z '
+2026-02-12T08:35:10.5551096Z +++ __git_log_gitk_options='
+2026-02-12T08:35:10.5551474Z 	--dense --sparse --full-history
+2026-02-12T08:35:10.5551866Z 	--simplify-merges --simplify-by-decoration
+2026-02-12T08:35:10.5552256Z 	--left-right --notes --no-notes
+2026-02-12T08:35:10.5552774Z '
+2026-02-12T08:35:10.5553130Z +++ __git_log_shortlog_options='
+2026-02-12T08:35:10.5553503Z 	--author= --grep= --exclude=
+2026-02-12T08:35:10.5553880Z 	--all-match --invert-grep
+2026-02-12T08:35:10.5554219Z '
+2026-02-12T08:35:10.5554563Z +++ __git_log_show_options='
+2026-02-12T08:35:10.5554975Z 	--diff-merges --diff-merges= --no-diff-merges --dd --remerge-diff
+2026-02-12T08:35:10.5555471Z 	--encoding=
+2026-02-12T08:35:10.5555800Z '
+2026-02-12T08:35:10.5556223Z +++ __git_diff_merges_opts='off none on first-parent 1 separate m combined c dense-combined cc remerge r'
+2026-02-12T08:35:10.5556983Z +++ __git_log_pretty_formats='oneline short medium full fuller reference email raw format: tformat: mboxrd'
+2026-02-12T08:35:10.5557623Z +++ __git_log_date_formats='relative iso8601 iso8601-strict rfc2822 short local default human raw unix auto: format:'
+2026-02-12T08:35:10.5558216Z +++ __git_push_recurse_submodules='check on-demand only'
+2026-02-12T08:35:10.5558741Z +++ __git_rebase_inprogress_options='--continue --skip --abort --quit --show-current-patch'
+2026-02-12T08:35:10.5559318Z +++ __git_rebase_interactive_inprogress_options='--continue --skip --abort --quit --show-current-patch --edit-todo'
+2026-02-12T08:35:10.5559854Z +++ __git_send_email_confirm_options='always never auto cc compose'
+2026-02-12T08:35:10.5560354Z +++ __git_send_email_suppresscc_options='author self cc bodycc sob cccmd body all'
+2026-02-12T08:35:10.5560809Z +++ __git_config_vars=
+2026-02-12T08:35:10.5561212Z +++ __git_config_vars_all=
+2026-02-12T08:35:10.5561651Z +++ __git_config_sections=
+2026-02-12T08:35:10.5562132Z +++ __git_revert_inprogress_options='--continue --quit --abort --skip'
+2026-02-12T08:35:10.5562612Z +++ __git_cmds_with_parseopt_helper=
+2026-02-12T08:35:10.5563080Z +++ [[ -n '' ]]
+2026-02-12T08:35:10.5563538Z +++ ___git_complete git __git_main
+2026-02-12T08:35:10.5564023Z +++ local wrapper=__git_wrap__git_main
+2026-02-12T08:35:10.5564490Z +++ eval '__git_wrap__git_main () { __git_func_wrap __git_main ; }'
+2026-02-12T08:35:10.5565001Z +++ complete -o bashdefault -o default -o nospace -F __git_wrap__git_main git
+2026-02-12T08:35:10.5565469Z +++ ___git_complete gitk __gitk_main
+2026-02-12T08:35:10.5565902Z +++ local wrapper=__git_wrap__gitk_main
+2026-02-12T08:35:10.5566359Z +++ eval '__git_wrap__gitk_main () { __git_func_wrap __gitk_main ; }'
+2026-02-12T08:35:10.5567125Z +++ complete -o bashdefault -o default -o nospace -F __git_wrap__gitk_main gitk
+2026-02-12T08:35:10.5567527Z +++ '[' linux-gnu = cygwin ']'
+2026-02-12T08:35:10.5567905Z ++ export 'PS1=(pdftopng-feedstock:docker-build-linux-64) '
+2026-02-12T08:35:10.5568306Z ++ PS1='(pdftopng-feedstock:docker-build-linux-64) '
+2026-02-12T08:35:10.5568657Z + mv pixi.toml.bak pixi.toml
+2026-02-12T08:35:10.5568940Z + popd
+2026-02-12T08:35:10.5569279Z + export CONDA_LIBMAMBA_SOLVER_NO_CHANNELS_FROM_INSTALLED=1
+2026-02-12T08:35:10.5569644Z + CONDA_LIBMAMBA_SOLVER_NO_CHANNELS_FROM_INSTALLED=1
+2026-02-12T08:35:10.5570108Z + setup_conda_rc /home/conda/feedstock_root /home/conda/recipe_root /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:10.5570518Z ~
+2026-02-12T08:35:17.4398292Z + source run_conda_forge_build_setup
+2026-02-12T08:35:17.4402504Z ++ export PYTHONUNBUFFERED=1
+2026-02-12T08:35:17.4403937Z ++ PYTHONUNBUFFERED=1
+2026-02-12T08:35:17.4404661Z ++ conda config --env --set show_channel_urls true
+2026-02-12T08:35:17.9831905Z ++ conda config --env --set auto_update_conda false
+2026-02-12T08:35:18.5354604Z ++ conda config --env --set add_pip_as_python_dependency false
+2026-02-12T08:35:19.0839818Z ++ conda config --env --append aggressive_update_packages ca-certificates
+2026-02-12T08:35:19.6662058Z ++ conda config --env --remove-key aggressive_update_packages
+2026-02-12T08:35:20.2199667Z ++ conda config --env --append aggressive_update_packages ca-certificates
+2026-02-12T08:35:20.7768004Z ++ conda config --env --append aggressive_update_packages certifi
+2026-02-12T08:35:21.3342655Z ++ export CONDA_BLD_PATH=/home/conda/feedstock_root/build_artifacts
+2026-02-12T08:35:21.3345475Z ++ CONDA_BLD_PATH=/home/conda/feedstock_root/build_artifacts
+2026-02-12T08:35:21.3346327Z ++ set +u
+2026-02-12T08:35:21.3347866Z ++ case "$CI" in
+2026-02-12T08:35:21.3348223Z ++ export CPU_COUNT=2
+2026-02-12T08:35:21.3348525Z ++ CPU_COUNT=2
+2026-02-12T08:35:21.3376144Z +++ cat /home/conda/feedstock_root/conda-forge.yml
+2026-02-12T08:35:21.3378764Z +++ shyaml get-value channel_priority strict
+2026-02-12T08:35:21.3752238Z ++ conda config --env --set channel_priority strict
+2026-02-12T08:35:21.9228864Z ++ [[ ! -z '' ]]
+2026-02-12T08:35:21.9229831Z ++ '[' '!' -z linux_64_python3.10.____cpython ']'
+2026-02-12T08:35:21.9232630Z ++ '[' '!' -z azure ']'
+2026-02-12T08:35:21.9233412Z ++ echo ''
+2026-02-12T08:35:21.9233751Z ++ echo CI:
+2026-02-12T08:35:21.9236995Z ++ echo '- azure'
+2026-02-12T08:35:21.9237791Z ++ echo ''
+2026-02-12T08:35:21.9239544Z ++ set -u
+2026-02-12T08:35:21.9240397Z ++ mkdir -p /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/conda/activate.d
+2026-02-12T08:35:21.9257061Z ++ echo 'export CONDA_BLD_PATH='\''/home/conda/feedstock_root/build_artifacts'\'''
+2026-02-12T08:35:21.9259945Z ++ '[' -n 2 ']'
+2026-02-12T08:35:21.9266058Z ++ echo 'export CPU_COUNT='\''2'\'''
+2026-02-12T08:35:21.9266965Z ++ echo 'export PYTHONUNBUFFERED='\''1'\'''
+2026-02-12T08:35:21.9272452Z +++ cat /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:21.9276713Z +++ shyaml get-value cuda_compiler_version.0 None
+2026-02-12T08:35:21.9644432Z ++ CUDA_VERSION=None
+2026-02-12T08:35:21.9645427Z ++ [[ None != \N\o\n\e ]]
+2026-02-12T08:35:21.9655588Z ++++ dirname /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin/run_conda_forge_build_setup
+2026-02-12T08:35:21.9677614Z +++ cd /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin
+2026-02-12T08:35:21.9678217Z +++ pwd
+2026-02-12T08:35:21.9682895Z ++ SCRIPT_DIR=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin
+2026-02-12T08:35:21.9684335Z ++ source /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin/cross_compile_support.sh
+2026-02-12T08:35:21.9691704Z +++++ dirname /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin/cross_compile_support.sh
+2026-02-12T08:35:21.9713423Z ++++ cd /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin
+2026-02-12T08:35:21.9718503Z ++++ pwd
+2026-02-12T08:35:21.9719263Z +++ SCRIPT_DIR=/home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/bin
+2026-02-12T08:35:21.9739605Z ++++ conda info --json
+2026-02-12T08:35:21.9740037Z ++++ jq -r .platform
+2026-02-12T08:35:22.7876666Z +++ BUILD_PLATFORM=linux-64
+2026-02-12T08:35:22.7877483Z +++ '[' -f /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml ']'
+2026-02-12T08:35:22.7898217Z ++++ cat /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:22.7905695Z ++++ shyaml get-value host_platform.0 None
+2026-02-12T08:35:22.8252585Z +++ HOST_PLATFORM=None
+2026-02-12T08:35:22.8277166Z ++++ cat /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:22.8279771Z ++++ shyaml get-value target_platform.0 None
+2026-02-12T08:35:22.8622129Z +++ TARGET_PLATFORM=linux-64
+2026-02-12T08:35:22.8648585Z ++++ cat /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:22.8650225Z ++++ shyaml get-value cuda_compiler_version.0 None
+2026-02-12T08:35:22.9009361Z +++ CUDA_COMPILER_VERSION=None
+2026-02-12T08:35:22.9020362Z ++++ shyaml get-value microarch_level.0 1
+2026-02-12T08:35:22.9022558Z ++++ cat /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:22.9383633Z +++ MICROARCH_LEVEL_NEEDED=1
+2026-02-12T08:35:22.9393334Z +++ '[' None = None ']'
+2026-02-12T08:35:22.9394676Z +++ '[' linux-64 = None ']'
+2026-02-12T08:35:22.9395073Z +++ HOST_PLATFORM=linux-64
+2026-02-12T08:35:22.9395408Z ++++ conda info --json
+2026-02-12T08:35:22.9417380Z ++++ jq -r '.virtual_pkgs[] | select(.[0] == "__glibc")[1]'
+2026-02-12T08:35:23.7097052Z +++ DOCKER_GLIBC_VERSION=2.34
+2026-02-12T08:35:23.7097650Z +++ GLIBC_VERSION=2.34
+2026-02-12T08:35:23.7097936Z +++ HOST_PLATFORM=linux-64
+2026-02-12T08:35:23.7098262Z +++ TARGET_PLATFORM=linux-64
+2026-02-12T08:35:23.7098556Z +++ CUDA_COMPILER_VERSION=None
+2026-02-12T08:35:23.7103520Z +++ [[ linux-64 != \l\i\n\u\x\-\6\4 ]]
+2026-02-12T08:35:23.7106469Z +++ [[ linux-64 == \l\i\n\u\x\-\6\4 ]]
+2026-02-12T08:35:23.7108169Z +++ [[ 1 == \4 ]]
+2026-02-12T08:35:23.7108589Z ++ '[' -f /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml ']'
+2026-02-12T08:35:23.7115988Z +++ cat /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:23.7117857Z +++ shyaml get-value MACOSX_DEPLOYMENT_TARGET.0 0
+2026-02-12T08:35:23.7483479Z ++ mdt=0
+2026-02-12T08:35:23.7509760Z +++ cat /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:23.7511212Z +++ shyaml get-value MACOSX_SDK_VERSION.0 0
+2026-02-12T08:35:23.7847802Z ++ msv=0
+2026-02-12T08:35:23.7853505Z ++ [[ 0 != \0 ]]
+2026-02-12T08:35:23.7854367Z ++ [[ 0 != \0 ]]
+2026-02-12T08:35:23.7855231Z ++ '[' '!' -z linux_64_python3.10.____cpython ']'
+2026-02-12T08:35:23.7857345Z ++ cat /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:23.7873531Z c_stdlib:
+2026-02-12T08:35:23.7874342Z - sysroot
+2026-02-12T08:35:23.7875186Z c_stdlib_version:
+2026-02-12T08:35:23.7875920Z - '2.17'
+2026-02-12T08:35:23.7876991Z channel_sources:
+2026-02-12T08:35:23.7880588Z - conda-forge
+2026-02-12T08:35:23.7883204Z channel_targets:
+2026-02-12T08:35:23.7883592Z - conda-forge main
+2026-02-12T08:35:23.7883900Z cxx_compiler:
+2026-02-12T08:35:23.7884185Z - gxx
+2026-02-12T08:35:23.7884477Z cxx_compiler_version:
+2026-02-12T08:35:23.7884760Z - '14'
+2026-02-12T08:35:23.7885037Z docker_image:
+2026-02-12T08:35:23.7885375Z - quay.io/condaforge/linux-anvil-x86_64:alma9
+2026-02-12T08:35:23.7885714Z pin_run_as_build:
+2026-02-12T08:35:23.7886000Z   python:
+2026-02-12T08:35:23.7886277Z     min_pin: x.x
+2026-02-12T08:35:23.7886764Z     max_pin: x.x
+2026-02-12T08:35:23.7887044Z poppler:
+2026-02-12T08:35:23.7895277Z - '26.02'
+2026-02-12T08:35:23.7895704Z python:
+2026-02-12T08:35:23.7896115Z - 3.10.* *_cpython
+2026-02-12T08:35:23.7896740Z target_platform:
+2026-02-12T08:35:23.7897189Z - linux-64
+2026-02-12T08:35:23.7897443Z
+2026-02-12T08:35:23.7897835Z CI:
+2026-02-12T08:35:23.7898130Z - azure
+2026-02-12T08:35:23.7898256Z
+2026-02-12T08:35:23.7898522Z ++ conda info
+2026-02-12T08:35:24.4802762Z
+2026-02-12T08:35:24.4809375Z      active environment : base
+2026-02-12T08:35:24.4811171Z     active env location : /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64
+2026-02-12T08:35:24.4811529Z             shell level : 2
+2026-02-12T08:35:24.4811808Z        user config file : /home/conda/.condarc
+2026-02-12T08:35:24.4812140Z  populated config files : /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/.condarc
+2026-02-12T08:35:24.4812559Z                           /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/condarc.d/anaconda-auth.yml
+2026-02-12T08:35:24.4812907Z                           /home/conda/.condarc
+2026-02-12T08:35:24.4813175Z           conda version : 26.1.0
+2026-02-12T08:35:24.4813442Z     conda-build version : 26.1.0
+2026-02-12T08:35:24.4813724Z          python version : 3.10.19.final.0
+2026-02-12T08:35:24.4814026Z                  solver : libmamba (default)
+2026-02-12T08:35:24.4814302Z        virtual packages : __archspec=1=zen2
+2026-02-12T08:35:24.4814574Z                           __conda=26.1.0=0
+2026-02-12T08:35:24.4814823Z                           __glibc=2.34=0
+2026-02-12T08:35:24.4815067Z                           __linux=6.11.0=0
+2026-02-12T08:35:24.4815330Z                           __unix=0=0
+2026-02-12T08:35:24.4815633Z        base environment : /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64  (writable)
+2026-02-12T08:35:24.4816011Z       conda av data dir : /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/etc/conda
+2026-02-12T08:35:24.4817217Z   conda av metadata url : None
+2026-02-12T08:35:24.4817665Z            channel URLs : https://conda.anaconda.org/conda-forge/linux-64
+2026-02-12T08:35:24.4818154Z                           https://conda.anaconda.org/conda-forge/noarch
+2026-02-12T08:35:24.4818565Z           package cache : /home/conda/feedstock_root/build_artifacts/pkg_cache
+2026-02-12T08:35:24.4819115Z                           /opt/conda/pkgs
+2026-02-12T08:35:24.4819507Z        envs directories : /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/envs
+2026-02-12T08:35:24.4819928Z                           /home/conda/.conda/envs
+2026-02-12T08:35:24.4820285Z     temporary directory : /tmp
+2026-02-12T08:35:24.4820641Z                platform : linux-64
+2026-02-12T08:35:24.4821114Z              user-agent : conda/26.1.0 requests/2.32.5 CPython/3.10.19 Linux/6.11.0-1018-azure almalinux/9.7 glibc/2.34 solver/libmamba conda-libmamba-solver/25.11.0 libmambapy/2.5.0
+2026-02-12T08:35:24.4821636Z                 UID:GID : 1001:1001
+2026-02-12T08:35:24.4821995Z              netrc file : None
+2026-02-12T08:35:24.4822332Z            offline mode : False
+2026-02-12T08:35:24.4822533Z
+2026-02-12T08:35:24.5539913Z ++ conda config --env --show-sources
+2026-02-12T08:35:25.0318017Z ==> /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/.condarc <==
+2026-02-12T08:35:25.0322435Z add_pip_as_python_dependency: False
+2026-02-12T08:35:25.0323292Z auto_update_conda: False
+2026-02-12T08:35:25.0323698Z aggressive_update_packages:
+2026-02-12T08:35:25.0324061Z   - ca-certificates
+2026-02-12T08:35:25.0324395Z   - certifi
+2026-02-12T08:35:25.0324736Z channel_priority: strict
+2026-02-12T08:35:25.0325080Z channels:
+2026-02-12T08:35:25.0325427Z   - conda-forge
+2026-02-12T08:35:25.0325836Z show_channel_urls: True
+2026-02-12T08:35:25.0326182Z conda_build:
+2026-02-12T08:35:25.0326684Z   pkg_format: 2
+2026-02-12T08:35:25.0327128Z   zstd_compression_level: 19
+2026-02-12T08:35:25.0327343Z
+2026-02-12T08:35:25.0327734Z ==> /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64/condarc.d/anaconda-auth.yml <==
+2026-02-12T08:35:25.0328158Z channel_settings:
+2026-02-12T08:35:25.0328575Z   - frozendict.frozendict({'channel': 'https://repo.anaconda.cloud/*', 'auth': 'anaconda-auth'})
+2026-02-12T08:35:25.0328864Z
+2026-02-12T08:35:25.0329201Z ==> /home/conda/.condarc <==
+2026-02-12T08:35:25.0329547Z pkgs_dirs:
+2026-02-12T08:35:25.0329921Z   - /home/conda/feedstock_root/build_artifacts/pkg_cache
+2026-02-12T08:35:25.0330297Z   - /opt/conda/pkgs
+2026-02-12T08:35:25.0330637Z solver: libmamba
+2026-02-12T08:35:25.0330972Z conda-build:
+2026-02-12T08:35:25.0331345Z   root-dir: /home/conda/feedstock_root/build_artifacts
+2026-02-12T08:35:25.0331583Z
+2026-02-12T08:35:25.0331901Z ==> envvars <==
+2026-02-12T08:35:25.0332235Z allow_softlinks: False
+2026-02-12T08:35:25.0332622Z bld_path: /home/conda/feedstock_root/build_artifacts
+2026-02-12T08:35:25.0332786Z
+2026-02-12T08:35:25.1002114Z ++ conda list --show-channel-urls
+2026-02-12T08:35:26.0984052Z # packages in environment at /home/conda/feedstock_root/.pixi/envs/docker-build-linux-64:
+2026-02-12T08:35:26.0985048Z #
+2026-02-12T08:35:26.0985624Z # Name                        Version          Build                 Channel
+2026-02-12T08:35:26.0986276Z _libgcc_mutex                 0.1              conda_forge           conda-forge
+2026-02-12T08:35:26.0987120Z _openmp_mutex                 4.5              2_gnu                 conda-forge
+2026-02-12T08:35:26.0987694Z anaconda-auth                 0.12.3           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0988101Z anaconda-cli-base             0.8.1            pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.0988453Z anaconda-client               1.14.1           pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.0989175Z annotated-doc                 0.0.4            pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.0989529Z annotated-types               0.7.0            pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.0989858Z archspec                      0.2.5            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0990373Z attrs                         25.4.0           pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.0990691Z backports                     1.0              pyhd8ed1ab_5          conda-forge
+2026-02-12T08:35:26.0991020Z backports.tarfile             1.2.0            pyhcf101f3_2          conda-forge
+2026-02-12T08:35:26.0991463Z backports.zstd                1.3.0            py310h69bd2ac_0       conda-forge
+2026-02-12T08:35:26.0991802Z beautifulsoup4                4.14.3           pyha770c72_0          conda-forge
+2026-02-12T08:35:26.0992129Z boltons                       25.0.0           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0992452Z brotli-python                 1.2.0            py310hba01987_1       conda-forge
+2026-02-12T08:35:26.0992767Z bzip2                         1.0.8            hda65f42_8            conda-forge
+2026-02-12T08:35:26.0993074Z c-ares                        1.34.6           hb03c661_0            conda-forge
+2026-02-12T08:35:26.0993402Z ca-certificates               2026.1.4         hbd8a1cb_0            conda-forge
+2026-02-12T08:35:26.0993726Z certifi                       2026.1.4         pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0994048Z cffi                          2.0.0            py310he7384ee_1       conda-forge
+2026-02-12T08:35:26.0994355Z chardet                       5.2.0            pyhd8ed1ab_3          conda-forge
+2026-02-12T08:35:26.0994660Z charset-normalizer            3.4.4            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0994971Z click                         8.3.1            pyh8f84b5b_1          conda-forge
+2026-02-12T08:35:26.0995257Z conda                         26.1.0           py310hff52083_0       conda-forge
+2026-02-12T08:35:26.0995550Z conda-build                   26.1.0           pyh31ec981_102        conda-forge
+2026-02-12T08:35:26.0995843Z conda-env                     2.6.0            1                     conda-forge
+2026-02-12T08:35:26.0996149Z conda-forge-ci-setup          4.24.2           py310h1648fa5_101     conda-forge
+2026-02-12T08:35:26.0996465Z conda-forge-metadata          0.12.0           pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.0996955Z conda-index                   0.7.0            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0997277Z conda-libmamba-solver         25.11.0          pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.0997582Z conda-oci-mirror              0.2.3            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0997900Z conda-package-handling        2.4.0            pyh7900ff3_2          conda-forge
+2026-02-12T08:35:26.0998229Z conda-package-streaming       0.12.0           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0998544Z cpp-expected                  1.3.1            h171cf75_0            conda-forge
+2026-02-12T08:35:26.0998846Z cryptography                  46.0.5           py310hb288b08_0       conda-forge
+2026-02-12T08:35:26.0999145Z dbus                          1.16.2           h24cb091_1            conda-forge
+2026-02-12T08:35:26.0999448Z defusedxml                    0.7.1            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.0999762Z deprecated                    1.3.1            pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1000045Z distro                        1.9.0            pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1000335Z evalidate                     2.0.5            pyhe01879c_0          conda-forge
+2026-02-12T08:35:26.1000634Z filelock                      3.20.3           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1000916Z fmt                           12.1.0           hff5e90c_0            conda-forge
+2026-02-12T08:35:26.1001201Z frozendict                    2.4.7            py310h7c4b9e2_0       conda-forge
+2026-02-12T08:35:26.1001487Z git                           2.52.0           pl5321h6d3cee1_1      conda-forge
+2026-02-12T08:35:26.1001763Z h2                            4.3.0            pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1002161Z hpack                         4.1.0            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1002459Z hyperframe                    6.1.0            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1002741Z icu                           78.2             h33c6efd_0            conda-forge
+2026-02-12T08:35:26.1003114Z idna                          3.11             pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1003401Z importlib-metadata            8.7.0            pyhe01879c_1          conda-forge
+2026-02-12T08:35:26.1003717Z importlib_resources           6.5.2            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1004019Z jaraco.classes                3.4.0            pyhcf101f3_3          conda-forge
+2026-02-12T08:35:26.1004328Z jaraco.context                6.1.0            pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1004630Z jaraco.functools              4.4.0            pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.1004935Z jeepney                       0.9.0            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1005221Z jinja2                        3.1.6            pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.1005502Z joblib                        1.5.3            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1005794Z jq                            1.8.1            h73b1eb8_0            conda-forge
+2026-02-12T08:35:26.1006081Z jsonpatch                     1.33             pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1006374Z jsonpointer                   3.0.0            pyhcf101f3_3          conda-forge
+2026-02-12T08:35:26.1006854Z jsonschema                    4.26.0           pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1007166Z jsonschema-specifications     2025.9.1         pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1007472Z jupyter_core                  5.9.1            pyhc90fa1f_0          conda-forge
+2026-02-12T08:35:26.1007764Z keyring                       25.7.0           pyha804496_0          conda-forge
+2026-02-12T08:35:26.1008053Z keyutils                      1.6.3            hb9d3cd8_0            conda-forge
+2026-02-12T08:35:26.1008343Z krb5                          1.21.3           h659f571_0            conda-forge
+2026-02-12T08:35:26.1008627Z lcms2                         2.18             h0c24ade_0            conda-forge
+2026-02-12T08:35:26.1008926Z ld_impl_linux-64              2.45.1           default_hbd61a6d_101  conda-forge
+2026-02-12T08:35:26.1009240Z lerc                          4.0.0            h0aef613_1            conda-forge
+2026-02-12T08:35:26.1009533Z libarchive                    3.8.5            gpl_hc2c16d8_100      conda-forge
+2026-02-12T08:35:26.1009819Z libcurl                       8.18.0           h4e3cde8_0            conda-forge
+2026-02-12T08:35:26.1010139Z libdeflate                    1.25             h17f619e_0            conda-forge
+2026-02-12T08:35:26.1010462Z libedit                       3.1.20250104     pl5321h7949ede_0      conda-forge
+2026-02-12T08:35:26.1010792Z libev                         4.33             hd590300_2            conda-forge
+2026-02-12T08:35:26.1011071Z libexpat                      2.7.3            hecca717_0            conda-forge
+2026-02-12T08:35:26.1011349Z libffi                        3.5.2            h3435931_0            conda-forge
+2026-02-12T08:35:26.1011648Z libfreetype                   2.14.1           ha770c72_0            conda-forge
+2026-02-12T08:35:26.1011943Z libfreetype6                  2.14.1           h73754d4_0            conda-forge
+2026-02-12T08:35:26.1012241Z libgcc                        15.2.0           he0feb66_17           conda-forge
+2026-02-12T08:35:26.1012529Z libgcc-ng                     15.2.0           h69a702a_17           conda-forge
+2026-02-12T08:35:26.1012822Z libglib                       2.86.3           h6548e54_0            conda-forge
+2026-02-12T08:35:26.1013104Z libgomp                       15.2.0           he0feb66_17           conda-forge
+2026-02-12T08:35:26.1013495Z libiconv                      1.18             h3b78370_2            conda-forge
+2026-02-12T08:35:26.1013785Z libjpeg-turbo                 3.1.2            hb03c661_0            conda-forge
+2026-02-12T08:35:26.1014069Z liblief                       0.17.1           hecca717_0            conda-forge
+2026-02-12T08:35:26.1014477Z liblzma                       5.8.2            hb03c661_0            conda-forge
+2026-02-12T08:35:26.1014767Z libmamba                      2.5.0            hd28c85e_0            conda-forge
+2026-02-12T08:35:26.1015085Z libmamba-spdlog               2.5.0            h12fcf84_0            conda-forge
+2026-02-12T08:35:26.1015406Z libmambapy                    2.5.0            py310h74f1d5f_0       conda-forge
+2026-02-12T08:35:26.1015722Z libnghttp2                    1.67.0           had1ee68_0            conda-forge
+2026-02-12T08:35:26.1016015Z libnsl                        2.0.1            hb9d3cd8_1            conda-forge
+2026-02-12T08:35:26.1016308Z libpng                        1.6.55           h421ea60_0            conda-forge
+2026-02-12T08:35:26.1016731Z libsolv                       0.7.35           h9463b59_0            conda-forge
+2026-02-12T08:35:26.1017025Z libsqlite                     3.51.2           hf4e2dac_0            conda-forge
+2026-02-12T08:35:26.1017319Z libssh2                       1.11.1           hcf80075_0            conda-forge
+2026-02-12T08:35:26.1017602Z libstdcxx                     15.2.0           h934c35e_17           conda-forge
+2026-02-12T08:35:26.1017915Z libstdcxx-ng                  15.2.0           hdf11a46_17           conda-forge
+2026-02-12T08:35:26.1018226Z libtiff                       4.7.1            h9d88235_1            conda-forge
+2026-02-12T08:35:26.1018513Z libuuid                       2.41.3           h5347b49_0            conda-forge
+2026-02-12T08:35:26.1018809Z libwebp-base                  1.6.0            hd42ef1d_0            conda-forge
+2026-02-12T08:35:26.1019103Z libxcb                        1.17.0           h8a09558_0            conda-forge
+2026-02-12T08:35:26.1019438Z libxcrypt                     4.4.36           hd590300_1            conda-forge
+2026-02-12T08:35:26.1019751Z libxml2                       2.15.1           he237659_1            conda-forge
+2026-02-12T08:35:26.1020054Z libxml2-16                    2.15.1           hca6bf5a_1            conda-forge
+2026-02-12T08:35:26.1020369Z libzlib                       1.3.1            hb9d3cd8_2            conda-forge
+2026-02-12T08:35:26.1020705Z lz4-c                         1.10.0           h5888daf_1            conda-forge
+2026-02-12T08:35:26.1021015Z lzo                           2.10             h280c20c_1002         conda-forge
+2026-02-12T08:35:26.1021337Z mamba                         2.5.0            h9835478_0            conda-forge
+2026-02-12T08:35:26.1021637Z markdown-it-py                4.0.0            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1021941Z markupsafe                    3.0.3            py310h3406613_0       conda-forge
+2026-02-12T08:35:26.1022253Z mbedtls                       3.6.3.1          h5888daf_0            conda-forge
+2026-02-12T08:35:26.1022562Z mdurl                         0.1.2            pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1022896Z menuinst                      2.4.2            py310hff52083_0       conda-forge
+2026-02-12T08:35:26.1023245Z more-itertools                10.8.0           pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.1023577Z msgpack-python                1.1.2            py310h03d9f68_1       conda-forge
+2026-02-12T08:35:26.1023895Z nbformat                      5.10.4           pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1024185Z ncurses                       6.5              h2d0b736_3            conda-forge
+2026-02-12T08:35:26.1024482Z nlohmann_json-abi             3.12.0           h0f90c79_1            conda-forge
+2026-02-12T08:35:26.1024784Z oniguruma                     6.9.10           hb9d3cd8_0            conda-forge
+2026-02-12T08:35:26.1025199Z openjpeg                      2.5.4            h55fea9a_0            conda-forge
+2026-02-12T08:35:26.1025495Z openssl                       3.6.1            h35e630c_1            conda-forge
+2026-02-12T08:35:26.1025789Z oras-py                       0.1.14           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1026221Z packaging                     26.0             pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1026679Z patch                         2.8              hb03c661_1002         conda-forge
+2026-02-12T08:35:26.1027006Z patchelf                      0.17.2           h58526e2_0            conda-forge
+2026-02-12T08:35:26.1027306Z pcre2                         10.47            haa7fec5_0            conda-forge
+2026-02-12T08:35:26.1027602Z perl                          5.32.1           7_hd590300_perl5      conda-forge
+2026-02-12T08:35:26.1027905Z pillow                        12.1.1           py310h5a73078_0       conda-forge
+2026-02-12T08:35:26.1028186Z pip                           26.0.1           pyh8b19718_0          conda-forge
+2026-02-12T08:35:26.1028495Z pkce                          1.0.3            pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1028779Z pkginfo                       1.12.1.2         pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1029076Z platformdirs                  4.5.1            pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1029374Z pluggy                        1.6.0            pyhf9edf01_1          conda-forge
+2026-02-12T08:35:26.1029677Z psutil                        7.2.2            py310h139afa4_0       conda-forge
+2026-02-12T08:35:26.1029971Z pthread-stubs                 0.4              hb9d3cd8_1002         conda-forge
+2026-02-12T08:35:26.1030273Z py-lief                       0.17.1           py310hea6c23e_0       conda-forge
+2026-02-12T08:35:26.1030567Z pybind11-abi                  11               hc364b38_1            conda-forge
+2026-02-12T08:35:26.1030861Z pycosat                       0.6.6            py310h7c4b9e2_3       conda-forge
+2026-02-12T08:35:26.1031156Z pycparser                     2.22             pyh29332c3_1          conda-forge
+2026-02-12T08:35:26.1031463Z pydantic                      2.12.5           pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.1031772Z pydantic-core                 2.41.5           py310hd8f68c5_1       conda-forge
+2026-02-12T08:35:26.1032085Z pydantic-settings             2.12.0           pyh3cfb1c2_0          conda-forge
+2026-02-12T08:35:26.1032387Z pygments                      2.19.2           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1032687Z pyjwt                         2.11.0           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1032959Z pysocks                       1.7.1            pyha55dd90_7          conda-forge
+2026-02-12T08:35:26.1033232Z python                        3.10.19          h3c07f61_3_cpython    conda-forge
+2026-02-12T08:35:26.1033524Z python-dateutil               2.9.0.post0      pyhe01879c_2          conda-forge
+2026-02-12T08:35:26.1033837Z python-dotenv                 1.2.1            pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1034146Z python-fastjsonschema         2.21.2           pyhe01879c_0          conda-forge
+2026-02-12T08:35:26.1034453Z python-libarchive-c           5.3              pyhe01879c_1          conda-forge
+2026-02-12T08:35:26.1034751Z python_abi                    3.10             8_cp310               conda-forge
+2026-02-12T08:35:26.1035030Z pytz                          2025.2           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1035323Z pyyaml                        6.0.3            py310h3406613_1       conda-forge
+2026-02-12T08:35:26.1035628Z rattler-build                 0.57.2           he64ecbb_1            conda-forge
+2026-02-12T08:35:26.1035944Z rattler-build-conda-compat    1.4.11           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1036251Z readchar                      4.2.1            pyhe01879c_0          conda-forge
+2026-02-12T08:35:26.1036684Z readline                      8.3              h853b02a_0            conda-forge
+2026-02-12T08:35:26.1037116Z referencing                   0.37.0           pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1037419Z reproc                        14.2.5.post0     hb9d3cd8_0            conda-forge
+2026-02-12T08:35:26.1037720Z reproc-cpp                    14.2.5.post0     h5888daf_0            conda-forge
+2026-02-12T08:35:26.1038119Z requests                      2.32.5           pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.1038428Z requests-toolbelt             1.0.0            pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1038724Z rich                          14.3.2           pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1039016Z ripgrep                       15.1.0           hdab8a38_0            conda-forge
+2026-02-12T08:35:26.1039307Z rpds-py                       0.30.0           py310hd8f68c5_0       conda-forge
+2026-02-12T08:35:26.1039603Z ruamel.yaml                   0.18.17          py310h139afa4_2       conda-forge
+2026-02-12T08:35:26.1039920Z ruamel.yaml.clib              0.2.15           py310h139afa4_1       conda-forge
+2026-02-12T08:35:26.1040236Z secretstorage                 3.4.1            py310hff52083_0       conda-forge
+2026-02-12T08:35:26.1040536Z semver                        3.0.4            pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.1040857Z setuptools                    82.0.0           pyh332efcf_0          conda-forge
+2026-02-12T08:35:26.1041156Z shellingham                   1.5.4            pyhd8ed1ab_2          conda-forge
+2026-02-12T08:35:26.1041452Z shyaml                        0.6.2            pyhd3deb0d_0          conda-forge
+2026-02-12T08:35:26.1041743Z simdjson                      4.2.4            hb700be7_0            conda-forge
+2026-02-12T08:35:26.1042048Z six                           1.17.0           pyhe01879c_1          conda-forge
+2026-02-12T08:35:26.1042334Z soupsieve                     2.8.3            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1042630Z spdlog                        1.17.0           hab81395_1            conda-forge
+2026-02-12T08:35:26.1042919Z tk                            8.6.13           noxft_h366c992_103    conda-forge
+2026-02-12T08:35:26.1043214Z tomli                         2.4.0            pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1043510Z tomlkit                       0.14.0           pyha770c72_0          conda-forge
+2026-02-12T08:35:26.1043795Z tqdm                          4.67.3           pyh8f84b5b_0          conda-forge
+2026-02-12T08:35:26.1044092Z traitlets                     5.14.3           pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1044391Z truststore                    0.10.4           pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1044688Z typer                         0.23.0           pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1044982Z typing-extensions             4.15.0           h396c80c_0            conda-forge
+2026-02-12T08:35:26.1045295Z typing-inspection             0.4.2            pyhd8ed1ab_1          conda-forge
+2026-02-12T08:35:26.1045605Z typing_extensions             4.15.0           pyhcf101f3_0          conda-forge
+2026-02-12T08:35:26.1045895Z tzdata                        2025c            hc9c84f9_1            conda-forge
+2026-02-12T08:35:26.1046179Z urllib3                       2.6.3            pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1046469Z wheel                         0.46.3           pyhd8ed1ab_0          conda-forge
+2026-02-12T08:35:26.1046924Z wrapt                         2.1.1            py310h7c4b9e2_0       conda-forge
+2026-02-12T08:35:26.1047219Z xorg-libxau                   1.0.12           hb03c661_1            conda-forge
+2026-02-12T08:35:26.1047528Z xorg-libxdmcp                 1.1.5            hb03c661_1            conda-forge
+2026-02-12T08:35:26.1047818Z yaml                          0.2.5            h280c20c_3            conda-forge
+2026-02-12T08:35:26.1048111Z yaml-cpp                      0.8.0            h3f2d84a_0            conda-forge
+2026-02-12T08:35:26.1048511Z zipp                          3.23.0           pyhcf101f3_1          conda-forge
+2026-02-12T08:35:26.1048791Z zlib-ng                       2.3.3            hceb46e0_1            conda-forge
+2026-02-12T08:35:26.1049087Z zstandard                     0.25.0           py310h139afa4_1       conda-forge
+2026-02-12T08:35:26.1049477Z zstd                          1.5.7            hb78ec9c_6            conda-forge
+2026-02-12T08:35:26.2042295Z + make_build_number /home/conda/feedstock_root /home/conda/recipe_root /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml
+2026-02-12T08:35:27.3848088Z ##[endgroup]
+2026-02-12T08:35:27.3849521Z + [[ -f /home/conda/feedstock_root/LICENSE.txt ]]
+2026-02-12T08:35:27.3850340Z + cp /home/conda/feedstock_root/LICENSE.txt /home/conda/recipe_root/recipe-scripts-license.txt
+2026-02-12T08:35:27.3872035Z + [[ 0 == 1 ]]
+2026-02-12T08:35:27.3873609Z + rattler-build build --recipe /home/conda/recipe_root -m /home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml --target-platform linux-64 --extra-meta flow_run_id=azure_20260212.1.1 --extra-meta remote_url=*** --extra-meta sha=a7fa66c7df2884acd8ac8b728ce409f2ee2dc8e1
+2026-02-12T08:35:27.4297084Z
+2026-02-12T08:35:27.4299966Z  ╭─ Finding outputs from recipe
+2026-02-12T08:35:27.4303902Z  │ Loading variant config file: "/home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml"
+2026-02-12T08:35:27.4310128Z  │ Loading variant config file: "/home/conda/recipe_root/conda_build_config.yaml"
+2026-02-12T08:35:27.4312542Z  │ Loading variant config file: "/home/conda/feedstock_root/.ci_support/linux_64_python3.10.____cpython.yaml"
+2026-02-12T08:35:27.4339081Z  │ Found 1 variants
+2026-02-12T08:35:27.4339514Z  │
+2026-02-12T08:35:27.4345140Z  │ Build variant: pdftopng-0.2.4-py310hf034570_5
+2026-02-12T08:35:27.4347791Z  │
+2026-02-12T08:35:27.4349508Z  │ ╭──────────────────────┬────────────────────╮
+2026-02-12T08:35:27.4366234Z  │ │ Variant              ┆ Version            │
+2026-02-12T08:35:27.4367215Z  │ ╞══════════════════════╪════════════════════╡
+2026-02-12T08:35:27.4368107Z  │ │ build_platform       ┆ "linux-64"         │
+2026-02-12T08:35:27.4368574Z  │ │ c_stdlib             ┆ "sysroot"          │
+2026-02-12T08:35:27.4369049Z  │ │ c_stdlib_version     ┆ "2.17"             │
+2026-02-12T08:35:27.4369489Z  │ │ channel_sources      ┆ "conda-forge"      │
+2026-02-12T08:35:27.4369919Z  │ │ channel_targets      ┆ "conda-forge main" │
+2026-02-12T08:35:27.4370403Z  │ │ cxx_compiler         ┆ "gxx"              │
+2026-02-12T08:35:27.4370864Z  │ │ cxx_compiler_version ┆ "14"               │
+2026-02-12T08:35:27.4371303Z  │ │ poppler              ┆ "26.02"            │
+2026-02-12T08:35:27.4371764Z  │ │ python               ┆ "3.10.* *_cpython" │
+2026-02-12T08:35:27.4372217Z  │ │ target_platform      ┆ "linux-64"         │
+2026-02-12T08:35:27.4372710Z  │ ╰──────────────────────┴────────────────────╯
+2026-02-12T08:35:27.4373073Z  │
+2026-02-12T08:35:27.4383804Z  ╰─────────────────── (took 0 seconds)
+2026-02-12T08:35:27.4384305Z
+2026-02-12T08:35:27.4385742Z  ╭─ Running build for recipe: pdftopng-0.2.4-py310hf034570_5
+2026-02-12T08:35:27.4388133Z  │
+2026-02-12T08:35:27.4389277Z  │ ╭─ Fetching source code
+2026-02-12T08:35:27.4390350Z  │ │ Fetching source from url: https://github.com/vinayak-mehta/pdftopng/archive/v0.2.4.tar.gz
+2026-02-12T08:35:27.9487134Z  │ │ Found filename from Content-Disposition: pdftopng-0.2.4.tar.gz
+2026-02-12T08:35:28.4085235Z  │ │ Downloaded file from https://github.com/vinayak-mehta/pdftopng/archive/v0.2.4.tar.gz
+2026-02-12T08:35:28.4088441Z  │ │ Validated SHA256 values of the downloaded file!
+2026-02-12T08:35:28.4089387Z  │ │ Extracting tar file to cache: /home/conda/feedstock_root/build_artifacts/src_cache/pdftopng-0_2_4_d321f137.tar.gz
+2026-02-12T08:35:28.4159377Z  │ │ Copying source from url: /home/conda/feedstock_root/build_artifacts/src_cache/pdftopng-0_2_4_d321f137 to /home/conda/feedstock_root/build_artifacts/bld/rattler-build_pdftopng_1770885327/work
+2026-02-12T08:35:28.4200448Z  │ │ Applying patch: /home/conda/recipe_root/0001-fix-setup.patch
+2026-02-12T08:35:28.4207217Z  │ │ Applying patch: /home/conda/recipe_root/0002-setOverprintPreview.patch
+2026-02-12T08:35:28.4211336Z  │ │ Fetching source from url: https://gitlab.freedesktop.org/poppler/poppler/-/raw/ee2af17e916e6310ab25b92a638df380b18a24ee/utils/numberofcharacters.h
+2026-02-12T08:35:29.7670254Z  │ │ Downloaded file from https://gitlab.freedesktop.org/poppler/poppler/-/raw/ee2af17e916e6310ab25b92a638df380b18a24ee/utils/numberofcharacters.h
+2026-02-12T08:35:29.7673485Z  │ │ Validated SHA256 values of the downloaded file!
+2026-02-12T08:35:29.7680057Z  │ │ Copying source from url: /home/conda/feedstock_root/build_artifacts/src_cache/numberofcharacters_h_285258e3 to /home/conda/feedstock_root/build_artifacts/bld/rattler-build_pdftopng_1770885327/work
+2026-02-12T08:35:29.7682697Z  │ │
+2026-02-12T08:35:29.7683167Z  │ ╰─────────────────── (took 2 seconds)
+2026-02-12T08:35:29.7955873Z  │
+2026-02-12T08:35:29.7956751Z  │ ╭─ Resolving environments
+2026-02-12T08:35:29.7957202Z  │ │
+2026-02-12T08:35:29.7957607Z  │ │ Resolving build environment:
+2026-02-12T08:35:29.7958159Z  │ │   Platform: linux-64 [__unix=0=0, __linux=6.11.0=0, __glibc=2.34=0, __archspec=1=zen2]
+2026-02-12T08:35:29.7958661Z  │ │   Channels:
+2026-02-12T08:35:29.7959123Z  │ │    - file:///home/conda/feedstock_root/build_artifacts/
+2026-02-12T08:35:29.7959623Z  │ │    - conda-forge
+2026-02-12T08:35:29.7960054Z  │ │   Specs:
+2026-02-12T08:35:29.7960493Z  │ │    - gxx_linux-64 14.*
+2026-02-12T08:35:29.7960946Z  │ │    - sysroot_linux-64 2.17.*
+2026-02-12T08:35:29.7961368Z  │ │    - sed
+2026-02-12T08:35:30.5298542Z  │ │
+2026-02-12T08:35:30.5303747Z  │ │ ╭──────────────────────────┬─────────┬──────────────────────┬─────────────┬─────────────╮
+2026-02-12T08:35:30.5304294Z  │ │ │ Package                  ┆ Version ┆ Build                ┆ Channel     ┆        Size │
+2026-02-12T08:35:30.5304885Z  │ │ ╞══════════════════════════╪═════════╪══════════════════════╪═════════════╪═════════════╡
+2026-02-12T08:35:30.5305488Z  │ │ │ _libgcc_mutex            ┆ 0.1     ┆ conda_forge          ┆ conda-forge ┆    2.50 KiB │
+2026-02-12T08:35:30.5306043Z  │ │ │ _openmp_mutex            ┆ 4.5     ┆ 2_gnu                ┆ conda-forge ┆   23.07 KiB │
+2026-02-12T08:35:30.5306803Z  │ │ │ binutils_impl_linux-64   ┆ 2.45.1  ┆ default_hfdba357_101 ┆ conda-forge ┆    3.57 MiB │
+2026-02-12T08:35:30.5307408Z  │ │ │ binutils_linux-64        ┆ 2.45.1  ┆ default_h4852527_101 ┆ conda-forge ┆   35.21 KiB │
+2026-02-12T08:35:30.5307950Z  │ │ │ gcc_impl_linux-64        ┆ 14.3.0  ┆ hb1e0a52_17          ┆ conda-forge ┆   71.38 MiB │
+2026-02-12T08:35:30.5308432Z  │ │ │ gcc_linux-64             ┆ 14.3.0  ┆ h298d278_20          ┆ conda-forge ┆   28.24 KiB │
+2026-02-12T08:35:30.5308910Z  │ │ │ gxx_impl_linux-64        ┆ 14.3.0  ┆ h2185e75_17          ┆ conda-forge ┆   14.54 MiB │
+2026-02-12T08:35:30.5309380Z  │ │ │ gxx_linux-64             ┆ 14.3.0  ┆ h3c3a7a4_20          ┆ conda-forge ┆   26.84 KiB │
+2026-02-12T08:35:30.5310087Z  │ │ │ kernel-headers_linux-64  ┆ 3.10.0  ┆ he073ed8_18          ┆ conda-forge ┆  921.37 KiB │
+2026-02-12T08:35:30.5310583Z  │ │ │ ld_impl_linux-64         ┆ 2.45.1  ┆ default_hbd61a6d_101 ┆ conda-forge ┆  708.50 KiB │
+2026-02-12T08:35:30.5311049Z  │ │ │ libgcc                   ┆ 15.2.0  ┆ he0feb66_17          ┆ conda-forge ┆ 1016.09 KiB │
+2026-02-12T08:35:30.5311651Z  │ │ │ libgcc-devel_linux-64    ┆ 14.3.0  ┆ hf649bbc_117         ┆ conda-forge ┆    2.94 MiB │
+2026-02-12T08:35:30.5312125Z  │ │ │ libgomp                  ┆ 15.2.0  ┆ he0feb66_17          ┆ conda-forge ┆  589.19 KiB │
+2026-02-12T08:35:30.5312583Z  │ │ │ libsanitizer             ┆ 14.3.0  ┆ h8f1669f_17          ┆ conda-forge ┆    6.90 MiB │
+2026-02-12T08:35:30.5313041Z  │ │ │ libstdcxx                ┆ 15.2.0  ┆ h934c35e_17          ┆ conda-forge ┆    5.58 MiB │
+2026-02-12T08:35:30.5313519Z  │ │ │ libstdcxx-devel_linux-64 ┆ 14.3.0  ┆ h9f08a49_117         ┆ conda-forge ┆   19.55 MiB │
+2026-02-12T08:35:30.5314002Z  │ │ │ libzlib                  ┆ 1.3.1   ┆ hb9d3cd8_2           ┆ conda-forge ┆   59.53 KiB │
+2026-02-12T08:35:30.5314448Z  │ │ │ sed                      ┆ 4.9     ┆ h6688a6e_0           ┆ conda-forge ┆  223.58 KiB │
+2026-02-12T08:35:30.5314904Z  │ │ │ sysroot_linux-64         ┆ 2.17    ┆ h0157908_18          ┆ conda-forge ┆   14.46 MiB │
+2026-02-12T08:35:30.5315368Z  │ │ │ tzdata                   ┆ 2025c   ┆ hc9c84f9_1           ┆ conda-forge ┆  116.34 KiB │
+2026-02-12T08:35:30.5315813Z  │ │ │ zstd                     ┆ 1.5.7   ┆ hb78ec9c_6           ┆ conda-forge ┆  587.28 KiB │
+2026-02-12T08:35:30.5316315Z  │ │ ╰──────────────────────────┴─────────┴──────────────────────┴─────────────┴─────────────╯
+2026-02-12T08:35:31.4081376Z  │ │
+2026-02-12T08:35:32.4087357Z  │ │ Resolving host environment:
+2026-02-12T08:35:32.4089283Z  │ │   Platform: linux-64 [__unix=0=0, __linux=6.11.0=0, __glibc=2.34=0, __archspec=1=zen2]
+2026-02-12T08:35:32.4114250Z  │ │   Channels:
+2026-02-12T08:35:32.4115010Z  │ │    - file:///home/conda/feedstock_root/build_artifacts/
+2026-02-12T08:35:32.4115592Z  │ │    - conda-forge
+2026-02-12T08:35:32.4116047Z  │ │   Specs:
+2026-02-12T08:35:32.4116799Z  │ │    - python 3.10.* *_cpython
+2026-02-12T08:35:32.4118187Z  │ │    - setuptools
+2026-02-12T08:35:32.4118705Z  │ │    - cython
+2026-02-12T08:35:32.4121668Z  │ │    - pybind11
+2026-02-12T08:35:32.4122175Z  │ │    - poppler 26.2.*
+2026-02-12T08:35:32.4122682Z  │ │    - pip
+2026-02-12T08:35:32.4123372Z  │ │    - libstdcxx >=14
+2026-02-12T08:35:32.4137235Z  │ │    - libgcc >=14
+2026-02-12T08:35:32.4137818Z  │ │    - __glibc >=2.17,<3.0.a0
+2026-02-12T08:35:32.4138577Z  │ │
+2026-02-12T08:35:32.4139486Z  │ │ ╭───────────────────────────┬──────────────┬──────────────────────┬─────────────┬─────────────╮
+2026-02-12T08:35:32.4140387Z  │ │ │ Package                   ┆ Version      ┆ Build                ┆ Channel     ┆        Size │
+2026-02-12T08:35:32.4141344Z  │ │ ╞═══════════════════════════╪══════════════╪══════════════════════╪═════════════╪═════════════╡
+2026-02-12T08:35:32.4147628Z  │ │ │ _libgcc_mutex             ┆ 0.1          ┆ conda_forge          ┆ conda-forge ┆    2.50 KiB │
+2026-02-12T08:35:32.4148385Z  │ │ │ _openmp_mutex             ┆ 4.5          ┆ 2_gnu                ┆ conda-forge ┆   23.07 KiB │
+2026-02-12T08:35:32.4149102Z  │ │ │ bzip2                     ┆ 1.0.8        ┆ hda65f42_8           ┆ conda-forge ┆  254.24 KiB │
+2026-02-12T08:35:32.4149767Z  │ │ │ c-ares                    ┆ 1.34.6       ┆ hb03c661_0           ┆ conda-forge ┆  203.01 KiB │
+2026-02-12T08:35:32.4150434Z  │ │ │ ca-certificates           ┆ 2026.1.4     ┆ hbd8a1cb_0           ┆ conda-forge ┆  143.08 KiB │
+2026-02-12T08:35:32.4151129Z  │ │ │ cairo                     ┆ 1.18.4       ┆ he90730b_1           ┆ conda-forge ┆  966.32 KiB │
+2026-02-12T08:35:32.4151777Z  │ │ │ cython                    ┆ 3.2.4        ┆ py310ha58568a_0      ┆ conda-forge ┆    3.04 MiB │
+2026-02-12T08:35:32.4152438Z  │ │ │ font-ttf-dejavu-sans-mono ┆ 2.37         ┆ hab24e00_0           ┆ conda-forge ┆  388.06 KiB │
+2026-02-12T08:35:32.4153425Z  │ │ │ font-ttf-inconsolata      ┆ 3.000        ┆ h77eed37_0           ┆ conda-forge ┆   94.27 KiB │
+2026-02-12T08:35:32.4154173Z  │ │ │ font-ttf-source-code-pro  ┆ 2.038        ┆ h77eed37_0           ┆ conda-forge ┆  684.39 KiB │
+2026-02-12T08:35:32.4155169Z  │ │ │ font-ttf-ubuntu           ┆ 0.83         ┆ h77eed37_3           ┆ conda-forge ┆    1.55 MiB │
+2026-02-12T08:35:32.4155863Z  │ │ │ fontconfig                ┆ 2.15.0       ┆ h7e30c49_1           ┆ conda-forge ┆  259.37 KiB │
+2026-02-12T08:35:32.4176996Z  │ │ │ fonts-conda-ecosystem     ┆ 1            ┆ 0                    ┆ conda-forge ┆    3.58 KiB │
+2026-02-12T08:35:32.4178068Z  │ │ │ fonts-conda-forge         ┆ 1            ┆ hc364b38_1           ┆ conda-forge ┆    3.96 KiB │
+2026-02-12T08:35:32.4178930Z  │ │ │ freetype                  ┆ 2.14.1       ┆ ha770c72_0           ┆ conda-forge ┆  169.06 KiB │
+2026-02-12T08:35:32.4179780Z  │ │ │ icu                       ┆ 78.2         ┆ h33c6efd_0           ┆ conda-forge ┆   12.14 MiB │
+2026-02-12T08:35:32.4180619Z  │ │ │ keyutils                  ┆ 1.6.3        ┆ hb9d3cd8_0           ┆ conda-forge ┆  130.95 KiB │
+2026-02-12T08:35:32.4181520Z  │ │ │ krb5                      ┆ 1.21.3       ┆ h659f571_0           ┆ conda-forge ┆    1.31 MiB │
+2026-02-12T08:35:32.4182412Z  │ │ │ lcms2                     ┆ 2.18         ┆ h0c24ade_0           ┆ conda-forge ┆  244.10 KiB │
+2026-02-12T08:35:32.4183269Z  │ │ │ ld_impl_linux-64          ┆ 2.45.1       ┆ default_hbd61a6d_101 ┆ conda-forge ┆  708.50 KiB │
+2026-02-12T08:35:32.4184123Z  │ │ │ lerc                      ┆ 4.0.0        ┆ h0aef613_1           ┆ conda-forge ┆  258.05 KiB │
+2026-02-12T08:35:32.4184959Z  │ │ │ libcurl                   ┆ 8.18.0       ┆ h4e3cde8_0           ┆ conda-forge ┆  452.09 KiB │
+2026-02-12T08:35:32.4185805Z  │ │ │ libdeflate                ┆ 1.25         ┆ h17f619e_0           ┆ conda-forge ┆   71.77 KiB │
+2026-02-12T08:35:32.4186864Z  │ │ │ libedit                   ┆ 3.1.20250104 ┆ pl5321h7949ede_0     ┆ conda-forge ┆  131.52 KiB │
+2026-02-12T08:35:32.4187757Z  │ │ │ libev                     ┆ 4.33         ┆ hd590300_2           ┆ conda-forge ┆  110.12 KiB │
+2026-02-12T08:35:32.4188578Z  │ │ │ libexpat                  ┆ 2.7.3        ┆ hecca717_0           ┆ conda-forge ┆   74.85 KiB │
+2026-02-12T08:35:32.4189390Z  │ │ │ libffi                    ┆ 3.5.2        ┆ h3435931_0           ┆ conda-forge ┆   57.22 KiB │
+2026-02-12T08:35:32.4190178Z  │ │ │ libfreetype               ┆ 2.14.1       ┆ ha770c72_0           ┆ conda-forge ┆    7.48 KiB │
+2026-02-12T08:35:32.4190964Z  │ │ │ libfreetype6              ┆ 2.14.1       ┆ h73754d4_0           ┆ conda-forge ┆  377.67 KiB │
+2026-02-12T08:35:32.4191746Z  │ │ │ libgcc                    ┆ 15.2.0       ┆ he0feb66_17          ┆ conda-forge ┆ 1016.09 KiB │
+2026-02-12T08:35:32.4192525Z  │ │ │ libgcc-ng                 ┆ 15.2.0       ┆ h69a702a_17          ┆ conda-forge ┆   26.90 KiB │
+2026-02-12T08:35:32.4193520Z  │ │ │ libglib                   ┆ 2.86.3       ┆ h6548e54_0           ┆ conda-forge ┆    3.76 MiB │
+2026-02-12T08:35:32.4194351Z  │ │ │ libgomp                   ┆ 15.2.0       ┆ he0feb66_17          ┆ conda-forge ┆  589.19 KiB │
+2026-02-12T08:35:32.4195214Z  │ │ │ libiconv                  ┆ 1.18         ┆ h3b78370_2           ┆ conda-forge ┆  771.66 KiB │
+2026-02-12T08:35:32.4196201Z  │ │ │ libjpeg-turbo             ┆ 3.1.2        ┆ hb03c661_0           ┆ conda-forge ┆  618.86 KiB │
+2026-02-12T08:35:32.4197153Z  │ │ │ liblzma                   ┆ 5.8.2        ┆ hb03c661_0           ┆ conda-forge ┆  110.55 KiB │
+2026-02-12T08:35:32.4198025Z  │ │ │ libnghttp2                ┆ 1.67.0       ┆ had1ee68_0           ┆ conda-forge ┆  650.98 KiB │
+2026-02-12T08:35:32.4198866Z  │ │ │ libnsl                    ┆ 2.0.1        ┆ hb9d3cd8_1           ┆ conda-forge ┆   32.94 KiB │
+2026-02-12T08:35:32.4199616Z  │ │ │ libpng                    ┆ 1.6.55       ┆ h421ea60_0           ┆ conda-forge ┆  310.22 KiB │
+2026-02-12T08:35:32.4200427Z  │ │ │ libsqlite                 ┆ 3.51.2       ┆ hf4e2dac_0           ┆ conda-forge ┆  920.71 KiB │
+2026-02-12T08:35:32.4202169Z  │ │ │ libssh2                   ┆ 1.11.1       ┆ hcf80075_0           ┆ conda-forge ┆  297.65 KiB │
+2026-02-12T08:35:32.4227597Z  │ │ │ libstdcxx                 ┆ 15.2.0       ┆ h934c35e_17          ┆ conda-forge ┆    5.58 MiB │
+2026-02-12T08:35:32.4228573Z  │ │ │ libstdcxx-ng              ┆ 15.2.0       ┆ hdf11a46_17          ┆ conda-forge ┆   26.93 KiB │
+2026-02-12T08:35:32.4229400Z  │ │ │ libtiff                   ┆ 4.7.1        ┆ h9d88235_1           ┆ conda-forge ┆  425.07 KiB │
+2026-02-12T08:35:32.4230161Z  │ │ │ libuuid                   ┆ 2.41.3       ┆ h5347b49_0           ┆ conda-forge ┆   39.37 KiB │
+2026-02-12T08:35:32.4231053Z  │ │ │ libwebp-base              ┆ 1.6.0        ┆ hd42ef1d_0           ┆ conda-forge ┆  418.96 KiB │
+2026-02-12T08:35:32.4231921Z  │ │ │ libxcb                    ┆ 1.17.0       ┆ h8a09558_0           ┆ conda-forge ┆  386.61 KiB │
+2026-02-12T08:35:32.4232712Z  │ │ │ libxcrypt                 ┆ 4.4.36       ┆ hd590300_1           ┆ conda-forge ┆   98.04 KiB │
+2026-02-12T08:35:32.4233500Z  │ │ │ libzlib                   ┆ 1.3.1        ┆ hb9d3cd8_2           ┆ conda-forge ┆   59.53 KiB │
+2026-02-12T08:35:32.4234297Z  │ │ │ ncurses                   ┆ 6.5          ┆ h2d0b736_3           ┆ conda-forge ┆  870.74 KiB │
+2026-02-12T08:35:32.4235093Z  │ │ │ nspr                      ┆ 4.38         ┆ h29cc59b_0           ┆ conda-forge ┆  223.23 KiB │
+2026-02-12T08:35:32.4235934Z  │ │ │ nss                       ┆ 3.118        ┆ h445c969_0           ┆ conda-forge ┆    1.96 MiB │
+2026-02-12T08:35:32.4237001Z  │ │ │ openjpeg                  ┆ 2.5.4        ┆ h55fea9a_0           ┆ conda-forge ┆  347.07 KiB │
+2026-02-12T08:35:32.4237889Z  │ │ │ openssl                   ┆ 3.6.1        ┆ h35e630c_1           ┆ conda-forge ┆    3.02 MiB │
+2026-02-12T08:35:32.4238629Z  │ │ │ packaging                 ┆ 26.0         ┆ pyhcf101f3_0         ┆ conda-forge ┆   70.32 KiB │
+2026-02-12T08:35:32.4239374Z  │ │ │ pcre2                     ┆ 10.47        ┆ haa7fec5_0           ┆ conda-forge ┆    1.17 MiB │
+2026-02-12T08:35:32.4240158Z  │ │ │ pip                       ┆ 26.0.1       ┆ pyh8b19718_0         ┆ conda-forge ┆    1.13 MiB │
+2026-02-12T08:35:32.4240933Z  │ │ │ pixman                    ┆ 0.46.4       ┆ h54a6638_1           ┆ conda-forge ┆  440.39 KiB │
+2026-02-12T08:35:32.4241665Z  │ │ │ poppler                   ┆ 26.02.0      ┆ h2f68852_0           ┆ conda-forge ┆    1.91 MiB │
+2026-02-12T08:35:32.4242384Z  │ │ │ poppler-data              ┆ 0.4.12       ┆ hd8ed1ab_0           ┆ conda-forge ┆    2.24 MiB │
+2026-02-12T08:35:32.4243108Z  │ │ │ pthread-stubs             ┆ 0.4          ┆ hb9d3cd8_1002        ┆ conda-forge ┆    8.06 KiB │
+2026-02-12T08:35:32.4243813Z  │ │ │ pybind11                  ┆ 3.0.1        ┆ pyh7a1b43c_0         ┆ conda-forge ┆  227.42 KiB │
+2026-02-12T08:35:32.4244531Z  │ │ │ pybind11-global           ┆ 3.0.1        ┆ pyhc7ab6ef_0         ┆ conda-forge ┆  223.51 KiB │
+2026-02-12T08:35:32.4245447Z  │ │ │ python                    ┆ 3.10.19      ┆ h3c07f61_3_cpython   ┆ conda-forge ┆   24.18 MiB │
+2026-02-12T08:35:32.4246170Z  │ │ │ python_abi                ┆ 3.10         ┆ 8_cp310              ┆ conda-forge ┆    6.83 KiB │
+2026-02-12T08:35:32.4247285Z  │ │ │ readline                  ┆ 8.3          ┆ h853b02a_0           ┆ conda-forge ┆  336.99 KiB │
+2026-02-12T08:35:32.4248098Z  │ │ │ setuptools                ┆ 82.0.0       ┆ pyh332efcf_0         ┆ conda-forge ┆  622.56 KiB │
+2026-02-12T08:35:32.4248891Z  │ │ │ tk                        ┆ 8.6.13       ┆ noxft_h366c992_103   ┆ conda-forge ┆    3.15 MiB │
+2026-02-12T08:35:32.4249706Z  │ │ │ tzdata                    ┆ 2025c        ┆ hc9c84f9_1           ┆ conda-forge ┆  116.34 KiB │
+2026-02-12T08:35:32.4250468Z  │ │ │ wheel                     ┆ 0.46.3       ┆ pyhd8ed1ab_0         ┆ conda-forge ┆   31.11 KiB │
+2026-02-12T08:35:32.4251247Z  │ │ │ xorg-libice               ┆ 1.1.2        ┆ hb9d3cd8_0           ┆ conda-forge ┆   57.25 KiB │
+2026-02-12T08:35:32.4252434Z  │ │ │ xorg-libsm                ┆ 1.2.6        ┆ he73a12e_0           ┆ conda-forge ┆   26.94 KiB │
+2026-02-12T08:35:32.4253340Z  │ │ │ xorg-libx11               ┆ 1.8.13       ┆ he1eb515_0           ┆ conda-forge ┆  819.97 KiB │
+2026-02-12T08:35:32.4254163Z  │ │ │ xorg-libxau               ┆ 1.0.12       ┆ hb03c661_1           ┆ conda-forge ┆   14.96 KiB │
+2026-02-12T08:35:32.4254998Z  │ │ │ xorg-libxdmcp             ┆ 1.1.5        ┆ hb03c661_1           ┆ conda-forge ┆   20.11 KiB │
+2026-02-12T08:35:32.4263987Z  │ │ │ xorg-libxext              ┆ 1.3.7        ┆ hb03c661_0           ┆ conda-forge ┆   49.15 KiB │
+2026-02-12T08:35:32.4264905Z  │ │ │ xorg-libxrender           ┆ 0.9.12       ┆ hb9d3cd8_0           ┆ conda-forge ┆   32.23 KiB │
+2026-02-12T08:35:32.4265636Z  │ │ │ zstd                      ┆ 1.5.7        ┆ hb78ec9c_6           ┆ conda-forge ┆  587.28 KiB │
+2026-02-12T08:35:32.4268551Z  │ │ ╰───────────────────────────┴──────────────┴──────────────────────┴─────────────┴─────────────╯
+2026-02-12T08:35:32.4287282Z  │ │
+2026-02-12T08:35:32.4287997Z  │ │ Finalized run dependencies (pdftopng-0.2.4-py310hf034570_5):
+2026-02-12T08:35:32.4288768Z  │ │ ╭──────────────────┬──────────────────────────────────────────────────╮
+2026-02-12T08:35:32.4289547Z  │ │ │ Name             ┆ Spec                                             │
+2026-02-12T08:35:32.4290421Z  │ │ ╞══════════════════╪══════════════════════════════════════════════════╡
+2026-02-12T08:35:32.4291104Z  │ │ │ Run dependencies ┆                                                  │
+2026-02-12T08:35:32.4291850Z  │ │ │ __glibc          ┆ >=2.17,<3.0.a0 (RE of [build: sysroot_linux-64]) │
+2026-02-12T08:35:32.4292646Z  │ │ │ click            ┆ *                                                │
+2026-02-12T08:35:32.4293343Z  │ │ │ libgcc           ┆ >=14 (RE of [build: gxx_linux-64])               │
+2026-02-12T08:35:32.4294064Z  │ │ │ libstdcxx        ┆ >=14 (RE of [build: gxx_linux-64])               │
+2026-02-12T08:35:32.4295007Z  │ │ │ poppler          ┆ *                                                │
+2026-02-12T08:35:32.4295781Z  │ │ │                  ┆ >=26.2.0,<26.3.0a0 (RE of [host: poppler])       │
+2026-02-12T08:35:32.4296477Z  │ │ │ python           ┆ *                                                │
+2026-02-12T08:35:32.4297505Z  │ │ │ python_abi       ┆ 3.10.* *_cp310 (RE of [host: python])            │
+2026-02-12T08:35:32.4298193Z  │ │ ╰──────────────────┴──────────────────────────────────────────────────╯
+2026-02-12T08:35:32.4298673Z  │ │
+2026-02-12T08:35:32.4299166Z  │ ╰─────────────────── (took 2 seconds)
+2026-02-12T08:35:32.4299588Z  │
+2026-02-12T08:35:32.4300040Z  │ Installing build environment
+2026-02-12T08:35:36.3467913Z  │ ✔ Successfully updated the build environment
+2026-02-12T08:35:36.3469880Z  │
+2026-02-12T08:35:36.3471832Z  │ Installing host environment
+2026-02-12T08:35:41.7492548Z  │ ✔ Successfully updated the host environment
+2026-02-12T08:35:41.7768285Z  │
+2026-02-12T08:35:41.7771397Z  │ ╭─ Running build script
+2026-02-12T08:35:41.7779762Z  │ │ INFO: activate-binutils_linux-64.sh made the following environmental changes:
+2026-02-12T08:35:41.7843469Z  │ │ +ADDR2LINE=x86_64-conda-linux-gnu-addr2line
+2026-02-12T08:35:41.7853207Z  │ │ +AR=x86_64-conda-linux-gnu-ar
+2026-02-12T08:35:41.7858440Z  │ │ +AS=x86_64-conda-linux-gnu-as
+2026-02-12T08:35:41.7869467Z  │ │ +CXXFILT=x86_64-conda-linux-gnu-c++filt
+2026-02-12T08:35:41.7869999Z  │ │ +ELFEDIT=x86_64-conda-linux-gnu-elfedit
+2026-02-12T08:35:41.7877256Z  │ │ +GPROF=x86_64-conda-linux-gnu-gprof
+2026-02-12T08:35:41.7881192Z  │ │ +LD=x86_64-conda-linux-gnu-ld
+2026-02-12T08:35:41.7883765Z  │ │ +NM=x86_64-conda-linux-gnu-nm
+2026-02-12T08:35:41.7890306Z  │ │ +OBJCOPY=x86_64-conda-linux-gnu-objcopy
+2026-02-12T08:35:41.7892797Z  │ │ +OBJDUMP=x86_64-conda-linux-gnu-objdump
+2026-02-12T08:35:41.7902297Z  │ │ +RANLIB=x86_64-conda-linux-gnu-ranlib
+2026-02-12T08:35:41.7908335Z  │ │ +READELF=x86_64-conda-linux-gnu-readelf
+2026-02-12T08:35:41.7913099Z  │ │ +SIZE=x86_64-conda-linux-gnu-size
+2026-02-12T08:35:41.7918109Z  │ │ +STRINGS=x86_64-conda-linux-gnu-strings
+2026-02-12T08:35:41.7918998Z  │ │ +STRIP=x86_64-conda-linux-gnu-strip
+2026-02-12T08:35:41.7997966Z  │ │ INFO: activate-gcc_linux-64.sh made the following environmental changes:
+2026-02-12T08:35:41.8047179Z  │ │ +build_alias=x86_64-conda-linux-gnu
+2026-02-12T08:35:41.8053160Z  │ │ -BUILD=x86_64-conda_cos6-linux-gnu
+2026-02-12T08:35:41.8055869Z  │ │ +BUILD=x86_64-conda-linux-gnu
+2026-02-12T08:35:41.8059281Z  │ │ +CC_FOR_BUILD=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-cc
+2026-02-12T08:35:41.8075981Z  │ │ +CC=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-cc
+2026-02-12T08:35:41.8087978Z  │ │ +CFLAGS=-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/pdftopng-0.2.4 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix
+2026-02-12T08:35:41.8110945Z  │ │ +CMAKE_ARGS=-DCMAKE_AR=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-ar -DCMAKE_CXX_COMPILER_AR=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc-ar -DCMAKE_C_COMPILER_AR=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc-ar -DCMAKE_RANLIB=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-ranlib -DCMAKE_CXX_COMPILER_RANLIB=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc-ranlib -DCMAKE_C_COMPILER_RANLIB=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc-ranlib -DCMAKE_LINKER=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-ld -DCMAKE_STRIP=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-strip -DCMAKE_BUILD_TYPE=Release -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY -DCMAKE_FIND_ROOT_PATH=$PREFIX;$BUILD_PREFIX/x86_64-conda-linux-gnu/sysroot -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_PROGRAM_PATH=$BUILD_PREFIX/bin;$PREFIX/bin
+2026-02-12T08:35:41.8123978Z  │ │ +CMAKE_PREFIX_PATH=$PREFIX:$BUILD_PREFIX/x86_64-conda-linux-gnu/sysroot/usr
+2026-02-12T08:35:41.8126871Z  │ │ +CONDA_BUILD_CROSS_COMPILATION=
+2026-02-12T08:35:41.8127373Z  │ │ -CONDA_BUILD_CROSS_COMPILATION=0
+2026-02-12T08:35:41.8138890Z  │ │ +CONDA_BUILD_SYSROOT=$BUILD_PREFIX/x86_64-conda-linux-gnu/sysroot
+2026-02-12T08:35:41.8139542Z  │ │ +CONDA_TOOLCHAIN_BUILD=x86_64-conda-linux-gnu
+2026-02-12T08:35:41.8140174Z  │ │ +CONDA_TOOLCHAIN_HOST=x86_64-conda-linux-gnu
+2026-02-12T08:35:41.8153471Z  │ │ +CPPFLAGS=-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem $PREFIX/include
+2026-02-12T08:35:41.8160436Z  │ │ +CPP_FOR_BUILD=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-cpp
+2026-02-12T08:35:41.8169310Z  │ │ +CPP=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-cpp
+2026-02-12T08:35:41.8191796Z  │ │ +DEBUG_CFLAGS=-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/pdftopng-0.2.4 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix
+2026-02-12T08:35:41.8197510Z  │ │ +DEBUG_CPPFLAGS=-D_DEBUG -D_FORTIFY_SOURCE=2 -Og -isystem $PREFIX/include
+2026-02-12T08:35:41.8217375Z  │ │ +GCC_AR=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc-ar
+2026-02-12T08:35:41.8218129Z  │ │ +GCC=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc
+2026-02-12T08:35:41.8224521Z  │ │ +GCC_NM=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc-nm
+2026-02-12T08:35:41.8231136Z  │ │ +GCC_RANLIB=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-gcc-ranlib
+2026-02-12T08:35:41.8235732Z  │ │ +host_alias=x86_64-conda-linux-gnu
+2026-02-12T08:35:41.8252955Z  │ │ +HOST=x86_64-conda-linux-gnu
+2026-02-12T08:35:41.8269484Z  │ │ +LDFLAGS_LD=-O2 --sort-common --as-needed -z relro -z now --disable-new-dtags --gc-sections --allow-shlib-undefined -rpath $PREFIX/lib -rpath-link $PREFIX/lib -L$PREFIX/lib
+2026-02-12T08:35:41.8305279Z  │ │ +LDFLAGS=-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib -L$PREFIX/lib
+2026-02-12T08:35:41.8327156Z  │ │ +MESON_ARGS=-Dbuildtype=release --prefix=$PREFIX -Dlibdir=lib
+2026-02-12T08:35:41.8332040Z  │ │ INFO: activate-gxx_linux-64.sh made the following environmental changes:
+2026-02-12T08:35:41.8349815Z  │ │ +CXXFLAGS=-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/pdftopng-0.2.4 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix
+2026-02-12T08:35:41.8381316Z  │ │ +CXX_FOR_BUILD=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-c++
+2026-02-12T08:35:41.8382183Z  │ │ +CXX=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-c++
+2026-02-12T08:35:41.8390439Z  │ │ +DEBUG_CXXFLAGS=-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/pdftopng-0.2.4 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix
+2026-02-12T08:35:41.8394924Z  │ │ +GXX=$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-g++
+2026-02-12T08:35:42.2800964Z  │ │ $PREFIX/lib/python3.10/site-packages/setuptools/dist.py:765: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+2026-02-12T08:35:42.2811736Z  │ │ !!
+2026-02-12T08:35:42.2827032Z  │ │         ********************************************************************************
+2026-02-12T08:35:42.2841180Z  │ │         Please consider removing the following classifiers in favor of a SPDX license expression:
+2026-02-12T08:35:42.2857294Z  │ │         License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+2026-02-12T08:35:42.2868160Z  │ │         See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+2026-02-12T08:35:42.2876365Z  │ │ running build
+2026-02-12T08:35:42.2885784Z  │ │         ********************************************************************************
+2026-02-12T08:35:42.2886348Z  │ │ running build_py
+2026-02-12T08:35:42.2888069Z  │ │ !!
+2026-02-12T08:35:42.2888845Z  │ │   self._finalize_license_expression()
+2026-02-12T08:35:42.2930191Z  │ │ creating build/lib.linux-x86_64-cpython-310/pdftopng
+2026-02-12T08:35:42.2939107Z  │ │ copying src/pdftopng/cli.py -> build/lib.linux-x86_64-cpython-310/pdftopng
+2026-02-12T08:35:42.2947639Z  │ │ copying src/pdftopng/__version__.py -> build/lib.linux-x86_64-cpython-310/pdftopng
+2026-02-12T08:35:42.2965033Z  │ │ copying src/pdftopng/__main__.py -> build/lib.linux-x86_64-cpython-310/pdftopng
+2026-02-12T08:35:42.2969752Z  │ │ copying src/pdftopng/__init__.py -> build/lib.linux-x86_64-cpython-310/pdftopng
+2026-02-12T08:35:42.2970272Z  │ │ running egg_info
+2026-02-12T08:35:42.3120682Z  │ │ creating src/pdftopng.egg-info
+2026-02-12T08:35:42.3121245Z  │ │ writing src/pdftopng.egg-info/PKG-INFO
+2026-02-12T08:35:42.3139312Z  │ │ writing dependency_links to src/pdftopng.egg-info/dependency_links.txt
+2026-02-12T08:35:42.3142213Z  │ │ writing entry points to src/pdftopng.egg-info/entry_points.txt
+2026-02-12T08:35:42.3151683Z  │ │ writing requirements to src/pdftopng.egg-info/requires.txt
+2026-02-12T08:35:42.3160086Z  │ │ writing top-level names to src/pdftopng.egg-info/top_level.txt
+2026-02-12T08:35:42.3161139Z  │ │ writing manifest file 'src/pdftopng.egg-info/SOURCES.txt'
+2026-02-12T08:35:42.3177409Z  │ │ reading manifest file 'src/pdftopng.egg-info/SOURCES.txt'
+2026-02-12T08:35:42.3184322Z  │ │ adding license file 'LICENSE'
+2026-02-12T08:35:42.3193464Z  │ │ writing manifest file 'src/pdftopng.egg-info/SOURCES.txt'
+2026-02-12T08:35:42.3202457Z  │ │ copying src/pdftopng/pdftopng.cpp -> build/lib.linux-x86_64-cpython-310/pdftopng
+2026-02-12T08:35:42.3208549Z  │ │ running build_ext
+2026-02-12T08:35:42.3249187Z  │ │ creating tmp
+2026-02-12T08:35:42.3275087Z  │ │ $BUILD_PREFIX/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/pdftopng-0.2.4 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix -D_LIBCPP_DISABLE_AVAILABILITY -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem $PREFIX/include -fPIC -I$PREFIX/include/python3.10 -c /tmp/tmpu6h9y5x9.cpp -o tmp/tmpu6h9y5x9.o -std=c++20
+2026-02-12T08:35:42.3440051Z  │ │ $BUILD_PREFIX/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/pdftopng-0.2.4 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix -D_LIBCPP_DISABLE_AVAILABILITY -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem $PREFIX/include -fPIC -I$PREFIX/include/python3.10 -c /tmp/tmp79192v8u.cpp -o tmp/tmp79192v8u.o -fvisibility=hidden
+2026-02-12T08:35:42.4668462Z  │ │ building 'pdftopng.pdftopng' extension
+2026-02-12T08:35:42.4671683Z  │ │ creating build/temp.linux-x86_64-cpython-310/src/pdftopng
+2026-02-12T08:35:42.4734195Z  │ │ $BUILD_PREFIX/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem $PREFIX/include -fdebug-prefix-map=$SRC_DIR=/usr/local/src/conda/pdftopng-0.2.4 -fdebug-prefix-map=$PREFIX=/usr/local/src/conda-prefix -D_LIBCPP_DISABLE_AVAILABILITY -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem $PREFIX/include -fPIC -DVERSION_INFO=\"0.2.4\" -I$PREFIX/include/poppler -I$PREFIX/include/poppler/fofi -I$PREFIX/include/poppler/goo -I$PREFIX/include/poppler/utils -I$PREFIX/include/poppler/poppler -I$PREFIX/include/poppler/build -I$PREFIX/include/poppler/build/utils -I$PREFIX/include/poppler/build/poppler -I$PREFIX/lib/python3.10/site-packages/pybind11/include -I$PREFIX/include/python3.10 -c src/pdftopng/pdftopng.cpp -o build/temp.linux-x86_64-cpython-310/src/pdftopng/pdftopng.o -O3 -Wall -shared -fPIC -std=c++20 -fvisibility=hidden
+2026-02-12T08:35:44.9791219Z  │ │ src/pdftopng/pdftopng.cpp: In function 'void savePageSlice(PDFDoc*, SplashOutputDev*, int, int, int, int, int, double, double, char*)':
+2026-02-12T08:35:44.9794901Z  │ │ src/pdftopng/pdftopng.cpp:122:18: error: 'splashOk' was not declared in this scope; did you mean 'splashOut'?
+2026-02-12T08:35:44.9806138Z  │ │   122 |         if (e != splashOk) {
+2026-02-12T08:35:44.9807132Z  │ │       |                  ^~~~~~~~
+2026-02-12T08:35:44.9807804Z  │ │       |                  splashOut
+2026-02-12T08:35:44.9886418Z  │ │ src/pdftopng/pdftopng.cpp: In function 'void convert(char*, char*)':
+2026-02-12T08:35:44.9896830Z  │ │ src/pdftopng/pdftopng.cpp:196:213: error: no matching function for call to 'SplashOutputDev::SplashOutputDev(SplashColorMode, int, bool, SplashColor, bool, SplashThinLineMode&, bool)'
+2026-02-12T08:35:44.9910605Z  │ │   196 |     splashOut = new SplashOutputDev(mono ? splashModeMono1 : gray ? splashModeMono8 : (jpegcmyk || overprint) ? splashModeDeviceN8 : splashModeRGB8, 4, false, paperColor, true, thinLineMode, jpegcmyk || overprint);
+2026-02-12T08:35:44.9926095Z  │ │       |                                                                                                                                                                                                                     ^
+2026-02-12T08:35:44.9931216Z  │ │ In file included from src/pdftopng/pdftopng.cpp:62:
+2026-02-12T08:35:44.9942987Z  │ │ $PREFIX/include/poppler/SplashOutputDev.h:196:5: note: candidate: 'SplashOutputDev::SplashOutputDev(SplashColorMode, int, SplashColorPtr, bool, SplashThinLineMode, bool)'
+2026-02-12T08:35:44.9964391Z  │ │   196 |     SplashOutputDev(SplashColorMode colorModeA, int bitmapRowPadA, SplashColorPtr paperColorA, bool bitmapTopDownA = true, SplashThinLineMode thinLineMode = splashThinLineDefault, bool overprintPreviewA = false);
+2026-02-12T08:35:44.9969007Z  │ │       |     ^~~~~~~~~~~~~~~
+2026-02-12T08:35:44.9983418Z  │ │ $PREFIX/include/poppler/SplashOutputDev.h:196:5: note:   candidate expects 6 arguments, 7 provided
+2026-02-12T08:35:46.1583478Z  │ │ src/pdftopng/pdftopng.cpp: At global scope:
+2026-02-12T08:35:46.1592538Z  │ │ src/pdftopng/pdftopng.cpp:93:13: warning: 'tiff' defined but not used [-Wunused-variable]
+2026-02-12T08:35:46.1603787Z  │ │    93 | static bool tiff = false;
+2026-02-12T08:35:46.1607507Z  │ │       |             ^~~~
+2026-02-12T08:35:46.1621894Z  │ │ src/pdftopng/pdftopng.cpp:91:13: warning: 'jpeg' defined but not used [-Wunused-variable]
+2026-02-12T08:35:46.1628410Z  │ │    91 | static bool jpeg = false;
+2026-02-12T08:35:46.1629458Z  │ │       |             ^~~~
+2026-02-12T08:35:46.1645477Z  │ │ src/pdftopng/pdftopng.cpp:90:13: warning: 'png' defined but not used [-Wunused-variable]
+2026-02-12T08:35:46.1648014Z  │ │    90 | static bool png = true;
+2026-02-12T08:35:46.1663436Z  │ │       |             ^~~
+2026-02-12T08:35:46.1664871Z  │ │ src/pdftopng/pdftopng.cpp:89:13: warning: 'forceNum' defined but not used [-Wunused-variable]
+2026-02-12T08:35:46.1665758Z  │ │    89 | static bool forceNum = false;
+2026-02-12T08:35:46.1666182Z  │ │       |             ^~~~~~~~
+2026-02-12T08:35:46.1666860Z  │ │ src/pdftopng/pdftopng.cpp:88:13: warning: 'sep' defined but not used [-Wunused-variable]
+2026-02-12T08:35:46.1667549Z  │ │    88 | static char sep[2] = "-";
+2026-02-12T08:35:46.1667947Z  │ │       |             ^~~
+2026-02-12T08:35:46.1758190Z  │ │ error: command '$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-c++' failed with exit code 1
+2026-02-12T08:35:46.2093903Z  │ │ × error Script failed with status 1
+2026-02-12T08:35:46.2096483Z  │ │ × error
+2026-02-12T08:35:46.2097084Z  │ │ × error Script execution failed.
+2026-02-12T08:35:46.2097396Z  │ │ × error
+2026-02-12T08:35:46.2097862Z  │ │ × error   Work directory: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_pdftopng_1770885327/work
+2026-02-12T08:35:46.2098732Z  │ │ × error   Prefix: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_pdftopng_1770885327/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place
+2026-02-12T08:35:46.2099463Z  │ │ × error   Build prefix: /home/conda/feedstock_root/build_artifacts/bld/rattler-build_pdftopng_1770885327/build_env
+2026-02-12T08:35:46.2099844Z  │ │ × error
+2026-02-12T08:35:46.2100214Z  │ │ × error To run the script manually, use the following command:
+2026-02-12T08:35:46.2100527Z  │ │ × error
+2026-02-12T08:35:46.2100995Z  │ │ × error   cd "/home/conda/feedstock_root/build_artifacts/bld/rattler-build_pdftopng_1770885327/work" && ./conda_build.sh
+2026-02-12T08:35:46.2101360Z  │ │ × error
+2026-02-12T08:35:46.2101731Z  │ │ × error To run commands interactively in the build environment:
+2026-02-12T08:35:46.2102057Z  │ │ × error
+2026-02-12T08:35:46.2102533Z  │ │ × error   cd "/home/conda/feedstock_root/build_artifacts/bld/rattler-build_pdftopng_1770885327/work" && source build_env.sh
+2026-02-12T08:35:46.2102902Z  │ │
+2026-02-12T08:35:46.2103238Z  │ ╰─────────────────── (took 4 seconds)
+2026-02-12T08:35:46.2106487Z  │
+2026-02-12T08:35:46.2108311Z  ╰─────────────────── (took 19 seconds)
+2026-02-12T08:35:46.2211831Z Error:   × Script failed to execute
+2026-02-12T08:35:46.2214918Z
+2026-02-12T08:35:49.1322782Z
+2026-02-12T08:35:49.1361322Z ##[error]Bash exited with code '1'.
+2026-02-12T08:35:49.1415879Z ##[section]Finishing: Run docker build

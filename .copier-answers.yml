@@ -1,0 +1,12 @@
+# This file is managed by Copier; DO NOT EDIT OR REMOVE.
+_commit: v0.4.1
+_src_path: https://github.com/quantco/copier-template-python-open-source
+add_autobump_workflow: true
+author_email: uwelk@xhochy.com
+author_name: Uwe L. Korn
+github_url: https://github.com/xhochy/cf-error-corpus
+github_user: xhochy
+minimal_python_version: py313
+project_short_description: A collection of error logs from builds on conda-forge
+project_slug: cf-error-corpus
+use_devcontainer: false
