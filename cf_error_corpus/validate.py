@@ -13,7 +13,8 @@ class InputYaml(BaseModel):
 
     source: Annotated[HttpUrl, Field(description="URL to the source issue or PR")]
     input: Annotated[
-        str, Field(description="Reference to the error log file", pattern=r"^error\.log$")
+        str,
+        Field(description="Reference to the error log file", pattern=r"^error\.log$"),
     ]
     most_minimal_output: Annotated[
         str, Field(description="Most minimal error output", min_length=1)

@@ -4,6 +4,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import pytest
+
 from cf_error_corpus.validate import InputYaml, main, validate_input_yml
 
 
