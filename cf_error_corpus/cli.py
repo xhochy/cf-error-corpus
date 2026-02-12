@@ -1,6 +1,5 @@
 """CLI for downloading Azure Pipeline logs from conda-forge PRs."""
 
-import argparse
 import json
 import re
 import sys
@@ -8,6 +7,8 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any
+
+import click
 
 
 def parse_github_pr_url(url: str) -> tuple[str, str, int]:
@@ -275,53 +276,48 @@ def get_azure_build_logs(api_url: str) -> str | None:
     return None
 
 
-def main() -> int:
-    """Main CLI entry point."""
-    parser = argparse.ArgumentParser(
-        description="Download Azure Pipeline logs from conda-forge PRs"
-    )
-    parser.add_argument(
-        "pr_url",
-        help="GitHub PR URL (e.g., https://github.com/conda-forge/nomad-feedstock/pull/52)",
-    )
-    parser.add_argument(
-        "-o",
-        "--output-dir",
-        type=Path,
-        default=Path("corpus"),
-        help="Output directory for corpus entries (default: corpus)",
-    )
-    parser.add_argument(
-        "-c",
-        "--category",
-        default="uncategorized",
-        help="Category subdirectory for corpus entries (default: uncategorized)",
-    )
+@click.command()
+@click.argument("pr_url")
+@click.option(
+    "-o",
+    "--output-dir",
+    type=click.Path(path_type=Path),
+    default=Path("corpus"),
+    help="Output directory for corpus entries (default: corpus)",
+)
+@click.option(
+    "-c",
+    "--category",
+    default="uncategorized",
+    help="Category subdirectory for corpus entries (default: uncategorized)",
+)
+def main(pr_url: str, output_dir: Path, category: str) -> int:
+    """Download Azure Pipeline logs from conda-forge PRs.
 
-    args = parser.parse_args()
-
+    PR_URL: GitHub PR URL (e.g., https://github.com/conda-forge/nomad-feedstock/pull/52)
+    """
     try:
         # Parse PR URL
-        owner, repo, pr_number = parse_github_pr_url(args.pr_url)
-        print(f"Fetching PR info for {owner}/{repo}#{pr_number}...")
+        owner, repo, pr_number = parse_github_pr_url(pr_url)
+        click.echo(f"Fetching PR info for {owner}/{repo}#{pr_number}...")
 
         # Get PR info
         pr_info = get_pr_info_from_api(owner, repo, pr_number)
         head_sha = pr_info["head"]["sha"]
-        print(f"Head commit: {head_sha}")
+        click.echo(f"Head commit: {head_sha}")
 
         # Get check runs
-        print("Fetching check runs...")
+        click.echo("Fetching check runs...")
         check_runs = get_commit_check_runs_from_api(owner, repo, head_sha)
 
         # Find failed builds
         failed_builds = find_failed_azure_builds(check_runs)
 
         if not failed_builds:
-            print("No failed Azure Pipeline builds found for this PR.")
+            click.echo("No failed Azure Pipeline builds found for this PR.")
             return 1
 
-        print(
+        click.echo(
             f"Found {len(failed_builds)} failed build(s): {', '.join(failed_builds.keys())}"
         )
 
@@ -329,44 +325,44 @@ def main() -> int:
         feedstock_name = repo.replace("-feedstock", "")
 
         # Create output directory
-        output_base = args.output_dir / args.category
+        output_base = output_dir / category
         output_base.mkdir(parents=True, exist_ok=True)
 
         # Download logs for each failed build
         for arch, run_info in failed_builds.items():
-            print(f"\nProcessing {arch} build: {run_info['name']}")
+            click.echo(f"\nProcessing {arch} build: {run_info['name']}")
 
             # Extract build name from check run name
             build_name = extract_build_name_from_check_run_name(run_info["name"], arch)
 
-            print(f"  Build name: {build_name}")
+            click.echo(f"  Build name: {build_name}")
 
             # Get details URL
             details_url = run_info.get("details_url", "")
             if not details_url:
-                print(f"  Warning: No details URL found for {arch} build")
+                click.echo(f"  Warning: No details URL found for {arch} build")
                 continue
 
-            print(f"  Details URL: {details_url}")
+            click.echo(f"  Details URL: {details_url}")
 
             # Try to get log URL
             log_api_url = extract_azure_log_url_from_details(details_url)
 
             if log_api_url:
-                print("  Attempting to download logs from Azure API...")
+                click.echo("  Attempting to download logs from Azure API...")
                 log_content = get_azure_build_logs(log_api_url)
 
                 if log_content:
-                    print(f"  Successfully downloaded logs ({len(log_content)} bytes)")
+                    click.echo(f"  Successfully downloaded logs ({len(log_content)} bytes)")
                 else:
-                    print("  Warning: Could not download logs from Azure API")
+                    click.echo("  Warning: Could not download logs from Azure API")
                     log_content = (
                         f"# Could not download logs automatically\n"
                         f"# Azure details URL: {details_url}\n"
                         f"# Please download manually\n"
                     )
             else:
-                print("  Warning: Could not parse Azure log URL")
+                click.echo("  Warning: Could not parse Azure log URL")
                 log_content = (
                     f"# Could not parse Azure log URL\n"
                     f"# Azure details URL: {details_url}\n"
@@ -380,24 +376,24 @@ def main() -> int:
                 pr_number,
                 build_name,
                 log_content,
-                args.pr_url,
+                pr_url,
             )
-            print(f"  Created entry directory: {entry_dir}")
+            click.echo(f"  Created entry directory: {entry_dir}")
 
-        print("\nDone!")
+        click.echo("\nDone!")
         return 0
 
     except urllib.error.HTTPError as e:
-        print(f"HTTP Error: {e.code} - {e.reason}", file=sys.stderr)
+        click.echo(f"HTTP Error: {e.code} - {e.reason}", err=True)
         if e.code == 403:
-            print(
+            click.echo(
                 "Note: GitHub API rate limit may be exceeded. "
                 "Consider using a GitHub token.",
-                file=sys.stderr,
+                err=True,
             )
         return 1
     except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
+        click.echo(f"Error: {e}", err=True)
         import traceback
 
         traceback.print_exc()
