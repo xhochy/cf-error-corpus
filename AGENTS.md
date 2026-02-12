@@ -42,6 +42,7 @@ corpus/<category>/<package>-<build_number>-<timestamp>-<platform-python>/
 - **Taplo** for TOML formatting
 - **Typos** for spell checking (excludes `corpus/` directory)
 - Pre-commit hooks enforce all of the above; run `pixi run pre-commit-install` to set up
+- Before committing any changes, run `pixi run pre-commit-run`
 
 ## Project Structure
 

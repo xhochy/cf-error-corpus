@@ -353,7 +353,9 @@ def main(pr_url: str, output_dir: Path, category: str) -> int:
                 log_content = get_azure_build_logs(log_api_url)
 
                 if log_content:
-                    click.echo(f"  Successfully downloaded logs ({len(log_content)} bytes)")
+                    click.echo(
+                        f"  Successfully downloaded logs ({len(log_content)} bytes)"
+                    )
                 else:
                     click.echo("  Warning: Could not download logs from Azure API")
                     log_content = (
