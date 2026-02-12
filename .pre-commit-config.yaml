@@ -13,7 +13,7 @@ repos:
         pass_filenames: false
       - id: pixi-postinstall
         name: pixi-postinstall
-        entry: pixi run postinstall
+        entry: pixi run -e default postinstall
         language: system
         always_run: true
         require_serial: true
