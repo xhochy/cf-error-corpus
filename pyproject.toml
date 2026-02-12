@@ -24,6 +24,7 @@ repository = "https://github.com/xhochy/cf-error-corpus"
 include = ["cf_error_corpus"]
 
 [project.scripts]
+cf-error-corpus-download = "cf_error_corpus.cli:main"
 
 [tool.ruff]
 line-length = 88
