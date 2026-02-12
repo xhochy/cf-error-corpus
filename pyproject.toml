@@ -15,7 +15,7 @@ classifiers = [
 ]
 requires-python = ">=3.13"
 readme = "README.md"
-dependencies = []
+dependencies = ["pydantic>=2.0", "pyyaml>=6.0"]
 
 [project.urls]
 repository = "https://github.com/xhochy/cf-error-corpus"
@@ -25,6 +25,7 @@ include = ["cf_error_corpus"]
 
 [project.scripts]
 cf-error-corpus-download = "cf_error_corpus.cli:main"
+validate-corpus = "cf_error_corpus.validate:main"
 
 [tool.ruff]
 line-length = 88
