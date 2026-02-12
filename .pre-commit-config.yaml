@@ -68,3 +68,11 @@ repos:
         types: [text]
         require_serial: true
         exclude: ^corpus/
+      # validate corpus input.yml files
+      - id: validate-corpus
+        name: validate-corpus
+        entry: pixi run -e default validate-corpus
+        language: system
+        files: ^corpus/.*/input\.yml$
+        pass_filenames: false
+
