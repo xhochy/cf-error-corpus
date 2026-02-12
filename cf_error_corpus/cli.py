@@ -165,7 +165,7 @@ def extract_build_name_from_check_run_name(name: str, arch: str) -> str:
 
 
 def find_failed_azure_builds(
-    check_runs: list[dict[str, Any]]
+    check_runs: list[dict[str, Any]],
 ) -> dict[str, dict[str, Any]]:
     """Find first failed Azure build for each architecture (linux and osx).
 
@@ -224,9 +224,7 @@ def extract_azure_log_url_from_details(details_url: str) -> str | None:
     build_id = match.group(1)
 
     # Extract organization and project from URL
-    match = re.match(
-        r"https://dev\.azure\.com/([^/]+)/([^/]+)/_build", details_url
-    )
+    match = re.match(r"https://dev\.azure\.com/([^/]+)/([^/]+)/_build", details_url)
     if not match:
         return None
 
@@ -339,9 +337,7 @@ def main() -> int:
             print(f"\nProcessing {arch} build: {run_info['name']}")
 
             # Extract build name from check run name
-            build_name = extract_build_name_from_check_run_name(
-                run_info["name"], arch
-            )
+            build_name = extract_build_name_from_check_run_name(run_info["name"], arch)
 
             print(f"  Build name: {build_name}")
 
@@ -357,20 +353,20 @@ def main() -> int:
             log_api_url = extract_azure_log_url_from_details(details_url)
 
             if log_api_url:
-                print(f"  Attempting to download logs from Azure API...")
+                print("  Attempting to download logs from Azure API...")
                 log_content = get_azure_build_logs(log_api_url)
 
                 if log_content:
                     print(f"  Successfully downloaded logs ({len(log_content)} bytes)")
                 else:
-                    print(f"  Warning: Could not download logs from Azure API")
+                    print("  Warning: Could not download logs from Azure API")
                     log_content = (
                         f"# Could not download logs automatically\n"
                         f"# Azure details URL: {details_url}\n"
                         f"# Please download manually\n"
                     )
             else:
-                print(f"  Warning: Could not parse Azure log URL")
+                print("  Warning: Could not parse Azure log URL")
                 log_content = (
                     f"# Could not parse Azure log URL\n"
                     f"# Azure details URL: {details_url}\n"
