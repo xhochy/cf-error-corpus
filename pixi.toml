@@ -11,6 +11,9 @@ python = ">=3.13"
 pip = "*"
 setuptools = ">=61"
 setuptools-scm = "*"
+pydantic = ">=2.0"
+pyyaml = ">=6.0"
+types-pyyaml = ">=6.0.12.20250915,<7"
 
 [feature.test.dependencies]
 pytest = ">=6"

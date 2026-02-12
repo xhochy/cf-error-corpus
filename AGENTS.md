@@ -21,6 +21,8 @@ pixi run check-wheel        # Validate wheel with twine
 
 To run a single test: `pixi run test tests/test_core.py::test_name`
 
+**Important:** When you modify `pixi.toml`, always run `pixi lock` to update the `pixi.lock` file. This ensures all dependencies are properly locked and the environment is reproducible.
+
 ## Corpus Data Structure
 
 Error logs live under `corpus/` organized by error category:

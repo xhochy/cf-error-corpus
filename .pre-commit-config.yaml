@@ -11,6 +11,13 @@ repos:
         always_run: true
         require_serial: true
         pass_filenames: false
+      - id: pixi-postinstall
+        name: pixi-postinstall
+        entry: pixi run -e default postinstall
+        language: system
+        always_run: true
+        require_serial: true
+        pass_filenames: false
       # ruff
       - id: ruff
         name: ruff
@@ -68,3 +75,10 @@ repos:
         types: [text]
         require_serial: true
         exclude: ^corpus/
+      # validate corpus input.yml files
+      - id: validate-corpus
+        name: validate-corpus
+        entry: pixi run -e default validate-corpus
+        language: system
+        files: ^corpus/.*/input\.yml$
+        pass_filenames: false
