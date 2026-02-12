@@ -51,7 +51,7 @@ def get_pr_info_from_api(owner: str, repo: str, pr_number: int) -> dict[str, Any
     req = urllib.request.Request(url)
     req.add_header("Accept", "application/vnd.github.v3+json")
 
-    with urllib.request.urlopen(req) as response:
+    with urllib.request.urlopen(req, timeout=30) as response:
         return json.loads(response.read().decode())
 
 
@@ -75,16 +75,17 @@ def get_commit_check_runs_from_api(
     req = urllib.request.Request(url)
     req.add_header("Accept", "application/vnd.github.v3+json")
 
-    with urllib.request.urlopen(req) as response:
+    with urllib.request.urlopen(req, timeout=30) as response:
         data = json.loads(response.read().decode())
         return data.get("check_runs", [])
 
 
-def download_content(url: str) -> str:
+def download_content(url: str, timeout: int = 30) -> str:
     """Download content from a URL.
 
     Args:
         url: URL to download from
+        timeout: Request timeout in seconds
 
     Returns:
         Content as string
@@ -93,7 +94,7 @@ def download_content(url: str) -> str:
         urllib.error.HTTPError: If download fails
     """
     req = urllib.request.Request(url)
-    with urllib.request.urlopen(req) as response:
+    with urllib.request.urlopen(req, timeout=timeout) as response:
         return response.read().decode("utf-8", errors="replace")
 
 
@@ -205,67 +206,120 @@ def find_failed_azure_builds(
     return failed_builds
 
 
-def extract_azure_log_url_from_details(details_url: str) -> str | None:
-    """Try to extract Azure Pipelines log URL from details page.
+def parse_azure_details_url(
+    details_url: str,
+) -> tuple[str, str, str, str | None] | None:
+    """Parse Azure Pipelines details URL to extract build info.
 
     Args:
         details_url: Azure Pipelines details URL
 
     Returns:
-        Log URL if found, None otherwise
+        Tuple of (org, project, build_id, job_id) or None if URL format is invalid.
+        job_id may be None if not present in the URL.
     """
-    # Parse Azure Pipelines URL to construct log URL
-    # Format: https://dev.azure.com/{org}/{project}/_build/results?buildId={buildId}&view=logs&j={jobId}&t={taskId}
-    # Log URL: https://dev.azure.com/{org}/{project}/_apis/build/builds/{buildId}/logs/{logId}
-
-    match = re.search(r"buildId=(\d+)", details_url)
-    if not match:
-        return None
-
-    build_id = match.group(1)
-
-    # Extract organization and project from URL
+    # Format: https://dev.azure.com/{org}/{project}/_build/results?buildId={buildId}&view=logs&jobId={jobId}
     match = re.match(r"https://dev\.azure\.com/([^/]+)/([^/]+)/_build", details_url)
     if not match:
         return None
 
     org, project = match.groups()
 
-    # Try to get the logs via API
-    # First get list of logs for the build
-    api_url = (
-        f"https://dev.azure.com/{org}/{project}/_apis/build/builds/{build_id}/logs"
-    )
-    return api_url
+    build_match = re.search(r"buildId=(\d+)", details_url)
+    if not build_match:
+        return None
+
+    build_id = build_match.group(1)
+
+    job_match = re.search(r"jobId=([0-9a-f-]+)", details_url)
+    job_id = job_match.group(1) if job_match else None
+
+    return org, project, build_id, job_id
 
 
-def get_azure_build_logs(api_url: str) -> str | None:
-    """Get full build logs from Azure Pipelines.
+def get_job_log_ids(
+    org: str, project: str, build_id: str, job_id: str
+) -> list[int] | None:
+    """Get log IDs for a specific job from the Azure Pipelines timeline API.
 
     Args:
-        api_url: Azure Pipelines API URL for logs list
+        org: Azure DevOps organization
+        project: Azure DevOps project
+        build_id: Build ID
+        job_id: Job ID to filter logs for
+
+    Returns:
+        List of log IDs for the job, or None if unable to fetch.
+    """
+    timeline_url = (
+        f"https://dev.azure.com/{org}/{project}/_apis/build/builds/{build_id}/timeline"
+    )
+    try:
+        req = urllib.request.Request(timeline_url)
+        with urllib.request.urlopen(req, timeout=30) as response:
+            data = json.loads(response.read().decode())
+    except Exception:
+        return None
+
+    log_ids: list[int] = []
+    for record in data.get("records", []):
+        if record.get("parentId") == job_id or record.get("id") == job_id:
+            # Only download failed logs
+            if record["result"] == "failed":
+                log_info = record.get("log")
+                if log_info and "id" in log_info:
+                    log_ids.append(log_info["id"])
+
+    return log_ids if log_ids else None
+
+
+def get_azure_build_logs(
+    org: str,
+    project: str,
+    build_id: str,
+    log_ids: list[int] | None = None,
+) -> str | None:
+    """Get build logs from Azure Pipelines.
+
+    If log_ids is provided, only those specific logs are downloaded.
+    Otherwise, all logs for the build are downloaded.
+
+    Args:
+        org: Azure DevOps organization
+        project: Azure DevOps project
+        build_id: Build ID
+        log_ids: Optional list of specific log IDs to download
 
     Returns:
         Combined log content, or None if unable to fetch
     """
+    base_url = (
+        f"https://dev.azure.com/{org}/{project}/_apis/build/builds/{build_id}/logs"
+    )
+
     try:
-        # Get list of logs
-        req = urllib.request.Request(api_url)
-        with urllib.request.urlopen(req) as response:
-            data = json.loads(response.read().decode())
+        if log_ids is None:
+            # Fetch full log list from API
+            req = urllib.request.Request(base_url)
+            with urllib.request.urlopen(req, timeout=30) as response:
+                data = json.loads(response.read().decode())
+            log_ids = [log["id"] for log in data.get("value", []) if "id" in log]
+
+        if not log_ids:
+            return None
 
         logs_content = []
+        total = len(log_ids)
 
-        # Download each log
-        for log in data.get("value", []):
-            log_url = log.get("url")
-            if log_url:
-                try:
-                    log_content = download_content(log_url)
-                    logs_content.append(log_content)
-                except Exception:
-                    # Skip logs we can't download
-                    continue
+        for i, log_id in enumerate(log_ids, 1):
+            log_url = f"{base_url}/{log_id}"
+            click.echo(f"    Downloading log {i}/{total}...")
+            try:
+                log_content = download_content(log_url)
+                logs_content.append(log_content)
+            except Exception:
+                click.echo(f"    Warning: Could not download log {log_id}")
+                continue
 
         if logs_content:
             return "\n".join(logs_content)
@@ -345,12 +399,31 @@ def main(pr_url: str, output_dir: Path, category: str) -> int:
 
             click.echo(f"  Details URL: {details_url}")
 
-            # Try to get log URL
-            log_api_url = extract_azure_log_url_from_details(details_url)
+            # Parse Azure details URL
+            parsed = parse_azure_details_url(details_url)
 
-            if log_api_url:
-                click.echo("  Attempting to download logs from Azure API...")
-                log_content = get_azure_build_logs(log_api_url)
+            if parsed:
+                az_org, az_project, az_build_id, az_job_id = parsed
+
+                # Try to get job-specific log IDs via timeline API
+                log_ids: list[int] | None = None
+                if az_job_id:
+                    click.echo(f"  Fetching job-specific logs (job {az_job_id})...")
+                    log_ids = get_job_log_ids(
+                        az_org, az_project, az_build_id, az_job_id
+                    )
+                    if log_ids:
+                        click.echo(f"  Found {len(log_ids)} logs for this job")
+                    else:
+                        click.echo(
+                            "  Warning: Could not get job-specific logs, "
+                            "falling back to all build logs"
+                        )
+
+                click.echo("  Downloading logs from Azure API...")
+                log_content = get_azure_build_logs(
+                    az_org, az_project, az_build_id, log_ids
+                )
 
                 if log_content:
                     click.echo(
@@ -364,9 +437,9 @@ def main(pr_url: str, output_dir: Path, category: str) -> int:
                         f"# Please download manually\n"
                     )
             else:
-                click.echo("  Warning: Could not parse Azure log URL")
+                click.echo("  Warning: Could not parse Azure details URL")
                 log_content = (
-                    f"# Could not parse Azure log URL\n"
+                    f"# Could not parse Azure details URL\n"
                     f"# Azure details URL: {details_url}\n"
                     f"# Please download manually\n"
                 )
