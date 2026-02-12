@@ -1,0 +1,36 @@
+source: https://github.com/conda-forge/pdftopng-feedstock/pull/34
+input: error.log
+most_minimal_output: |
+  src/pdftopng/pdftopng.cpp:122:18: error: 'splashOk' was not declared in this scope; did you mean 'splashOut'?
+expected_output: |
+  src/pdftopng/pdftopng.cpp: In function 'void savePageSlice(PDFDoc*, SplashOutputDev*, int, int, int, int, int, double, double, char*)':
+  src/pdftopng/pdftopng.cpp:122:18: error: 'splashOk' was not declared in this scope; did you mean 'splashOut'?
+   122 | if (e != splashOk) {
+       |                  ^~~~~~~~
+       |                  splashOut
+  src/pdftopng/pdftopng.cpp: In function 'void convert(char*, char*)':
+  src/pdftopng/pdftopng.cpp:196:213: error: no matching function for call to 'SplashOutputDev::SplashOutputDev(SplashColorMode, int, bool, SplashColor, bool, SplashThinLineMode&, bool)'
+   196 | splashOut = new SplashOutputDev(mono ? splashModeMono1 : gray ? splashModeMono8 : (jpegcmyk || overprint) ? splashModeDeviceN8 : splashModeRGB8, 4, false, paperColor, true, thinLineMode, jpegcmyk || overprint);
+       |                                                                                                                                                                                                             ^
+  In file included from src/pdftopng/pdftopng.cpp:62:
+  $PREFIX/include/poppler/SplashOutputDev.h:196:5: note: candidate: 'SplashOutputDev::SplashOutputDev(SplashColorMode, int, SplashColorPtr, bool, SplashThinLineMode, bool)'
+   196 | SplashOutputDev(SplashColorMode colorModeA, int bitmapRowPadA, SplashColorPtr paperColorA, bool bitmapTopDownA = true, SplashThinLineMode thinLineMode = splashThinLineDefault, bool overprintPreviewA = false);
+       | ^~~~~~~~~~~~~~~
+  $PREFIX/include/poppler/SplashOutputDev.h:196:5: note: candidate expects 6 arguments, 7 provided
+  src/pdftopng/pdftopng.cpp: At global scope:
+  src/pdftopng/pdftopng.cpp:93:13: warning: 'tiff' defined but not used [-Wunused-variable]
+   93 | static bool tiff = false;
+       | ^~~~
+  src/pdftopng/pdftopng.cpp:91:13: warning: 'jpeg' defined but not used [-Wunused-variable]
+   91 | static bool jpeg = false;
+       | ^~~~
+  src/pdftopng/pdftopng.cpp:90:13: warning: 'png' defined but not used [-Wunused-variable]
+   90 | static bool png = true;
+       | ^~~
+  src/pdftopng/pdftopng.cpp:89:13: warning: 'forceNum' defined but not used [-Wunused-variable]
+   89 | static bool forceNum = false;
+       | ^~~~~~~~
+  src/pdftopng/pdftopng.cpp:88:13: warning: 'sep' defined but not used [-Wunused-variable]
+   88 | static char sep[2] = "-";
+       | ^~~
+  error: command '$BUILD_PREFIX/bin/x86_64-conda-linux-gnu-c++' failed with exit code 1

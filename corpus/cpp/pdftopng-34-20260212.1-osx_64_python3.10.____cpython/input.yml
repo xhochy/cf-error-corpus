@@ -1,0 +1,19 @@
+source: https://github.com/conda-forge/pdftopng-feedstock/pull/34
+input: error.log
+most_minimal_output: |
+  src/pdftopng/pdftopng.cpp:122:18: error: use of undeclared identifier 'splashOk'
+expected_output: |
+  src/pdftopng/pdftopng.cpp:122:18: error: use of undeclared identifier 'splashOk'
+   122 | if (e != splashOk) {
+       |          ^
+  src/pdftopng/pdftopng.cpp:196:21: error: no matching constructor for initialization of 'SplashOutputDev'
+   196 | splashOut = new SplashOutputDev(mono ? splashModeMono1 : gray ? splashModeMono8 : (jpegcmyk || overprint) ? splashModeDeviceN8 : splashModeRGB8, 4, false, paperColor, true, thinLineMode, jpegcmyk || overprint);
+       |             ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  $PREFIX/include/poppler/SplashOutputDev.h:196:5: note: candidate constructor not viable: requires at most 6 arguments, but 7 were provided
+   196 | SplashOutputDev(SplashColorMode colorModeA, int bitmapRowPadA, SplashColorPtr paperColorA, bool bitmapTopDownA = true, SplashThinLineMode thinLineMode = splashThinLineDefault, bool overprintPreviewA = false);
+       | ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  $PREFIX/include/poppler/SplashOutputDev.h:192:30: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 7 were provided
+   192 | class POPPLER_PRIVATE_EXPORT SplashOutputDev : public OutputDev
+       |       ^~~~~~~~~~~~~~~
+  2 errors generated.
+  error: command '$BUILD_PREFIX/bin/x86_64-apple-darwin13.4.0-clang++' failed with exit code 1
